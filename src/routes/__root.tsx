@@ -129,7 +129,8 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="flex min-h-dvh flex-col">
+      <div className="relative flex min-h-dvh flex-col">
+        <div className="blueprint-bg" aria-hidden="true" />
         <SiteNav />
         <main className="flex-1">
           <Outlet />

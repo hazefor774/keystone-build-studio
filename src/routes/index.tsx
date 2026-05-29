@@ -5,7 +5,6 @@ import {
   Network,
   ShieldCheck,
   Workflow,
-  Cpu,
   Building2,
   Rocket,
   Banknote,
@@ -20,7 +19,8 @@ import {
 import { TrustBadges } from "@/components/TrustBadges";
 import { CTABand } from "@/components/CTABand";
 import { SectionHeading } from "@/components/SectionHeading";
-import { ArchBackdrop } from "@/components/ArchBackdrop";
+import { Kicker, StatusDot } from "@/components/Kicker";
+import { TopologyHero } from "@/components/TopologyHero";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -69,65 +69,89 @@ function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden">
-        <ArchBackdrop />
-        <div className="relative mx-auto max-w-6xl px-6 pb-20 pt-20 sm:pt-28">
-          <div className="mx-auto max-w-3xl text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs font-medium text-teal shadow-sm">
-              <ShieldCheck className="h-3.5 w-3.5" />
-              Senior network & security consulting · Southern California
-            </span>
-            <h1 className="mt-6 text-4xl font-bold leading-[1.1] tracking-tight text-foreground sm:text-6xl">
-              Enterprise networks,
-              <br />
+      <section className="relative overflow-hidden border-b border-[var(--line)]">
+        <div className="mx-auto grid max-w-7xl gap-12 px-6 pb-24 pt-20 sm:pt-28 lg:grid-cols-[1.1fr_1fr] lg:items-center">
+          <div>
+            <div className="reveal reveal-1">
+              <StatusDot label="Accepting Q3 engagements · Southern California" />
+            </div>
+            <h1 className="reveal reveal-2 mt-6 max-w-2xl text-[clamp(2.5rem,6vw,4.75rem)] font-extrabold leading-[0.96] tracking-tight">
+              Enterprise networks,{" "}
               <span className="text-gradient-brand">engineered to hold under pressure.</span>
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg">
-              Herman Stone INC delivers senior-level Cisco, Palo Alto, and network automation
-              expertise to healthcare, enterprise, and public-sector teams across Southern
-              California — as fixed-scope audits, sprints, and retainers.
+            <p className="reveal reveal-3 mt-7 max-w-xl text-base text-muted-foreground sm:text-lg">
+              Senior-level Cisco, Palo Alto, and network automation expertise — delivered as
+              fixed-scope audits, sprints, and retainers. No juniors learning on your network.
             </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <Link
-                to="/contact"
-                className="gradient-brand inline-flex items-center gap-2 rounded-md px-6 py-3 font-semibold text-white shadow-md transition hover:opacity-95"
-              >
-                Book a Call <ArrowRight className="h-4 w-4" />
+            <div className="reveal reveal-4 mt-9 flex flex-wrap gap-3">
+              <Link to="/contact" className="btn-primary">
+                Book a Call <ArrowRight className="h-3.5 w-3.5" />
               </Link>
-              <Link
-                to="/packages"
-                className="inline-flex items-center gap-2 rounded-md border border-border bg-card px-6 py-3 font-semibold text-foreground transition hover:border-teal hover:text-teal"
-              >
+              <Link to="/packages" className="btn-ghost">
                 See our packages
               </Link>
             </div>
+            <div className="reveal reveal-5 mt-12 grid max-w-md grid-cols-3 gap-4 border-t border-[var(--line)] pt-6 font-mono-label text-[10px] text-muted-foreground">
+              <div>
+                <p className="text-2xl font-bold text-text" style={{ fontFamily: "var(--font-display)" }}>18+</p>
+                <p className="mt-1">Years senior delivery</p>
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-text" style={{ fontFamily: "var(--font-display)" }}>59</p>
+                <p className="mt-1">Branch cutovers</p>
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-text" style={{ fontFamily: "var(--font-display)" }}>0</p>
+                <p className="mt-1">Unplanned outages</p>
+              </div>
+            </div>
           </div>
-          <TrustBadges className="mt-14" />
+
+          <div className="reveal reveal-3 relative h-[420px] -mr-12 lg:h-[480px] lg:-mr-24">
+            <div className="absolute inset-0 border border-[var(--line)] bg-ink-800/40">
+              <TopologyHero />
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* What we do */}
-      <section className="border-t border-border bg-card">
-        <div className="mx-auto max-w-6xl px-6 py-20">
-          <SectionHeading
-            eyebrow="What we do"
-            title="Four capabilities. Senior delivery on every one."
-            center
-          />
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {capabilities.map(({ icon: Icon, title, desc }) => (
+      {/* Trust strip */}
+      <section className="border-b border-[var(--line)] bg-ink-800/60">
+        <div className="mx-auto max-w-7xl px-6 py-10">
+          <TrustBadges />
+        </div>
+      </section>
+
+      {/* Capabilities */}
+      <section className="border-b border-[var(--line)]">
+        <div className="mx-auto max-w-7xl px-6 py-24">
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <SectionHeading
+              index="01"
+              eyebrow="Capabilities"
+              title="Four disciplines. Senior delivery on every one."
+            />
+            <Link to="/services" className="font-mono-label text-[11px] text-teal-lit hover:underline">
+              View all services →
+            </Link>
+          </div>
+          <div className="mt-14 grid gap-px bg-[var(--line)] sm:grid-cols-2 lg:grid-cols-4">
+            {capabilities.map(({ icon: Icon, title, desc }, i) => (
               <Link
                 key={title}
                 to="/services"
-                className="group rounded-lg border border-border bg-background p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-teal hover:shadow-md"
+                className="group relative bg-ink-900 p-7 transition hover:bg-ink-800"
               >
-                <div className="gradient-brand inline-flex h-11 w-11 items-center justify-center rounded-md text-white">
-                  <Icon className="h-5 w-5" />
+                <div className="flex items-start justify-between">
+                  <Icon className="h-6 w-6 text-teal-lit" strokeWidth={1.5} />
+                  <span className="font-mono-label text-[10px] text-muted-foreground">
+                    0{i + 1}
+                  </span>
                 </div>
-                <h3 className="mt-5 text-lg font-semibold">{title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{desc}</p>
-                <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-teal opacity-0 transition group-hover:opacity-100">
-                  Learn more <ArrowRight className="h-3.5 w-3.5" />
+                <h3 className="mt-10 text-lg font-bold leading-tight">{title}</h3>
+                <p className="mt-3 text-sm text-muted-foreground">{desc}</p>
+                <span className="mt-6 inline-flex items-center gap-1 font-mono-label text-[10px] text-teal-lit opacity-60 transition group-hover:opacity-100">
+                  Trace path <ArrowRight className="h-3 w-3" />
                 </span>
               </Link>
             ))}
@@ -136,24 +160,32 @@ function Home() {
       </section>
 
       {/* How we work */}
-      <section className="border-t border-border">
-        <div className="mx-auto max-w-6xl px-6 py-20">
+      <section className="border-b border-[var(--line)] bg-ink-800/40">
+        <div className="mx-auto max-w-7xl px-6 py-24">
           <SectionHeading
-            eyebrow="How we work"
-            title="A productized model: Audit → Sprint → Retainer."
-            subtitle="Start with a fixed-scope audit; scale into implementation and ongoing advisory as trust grows."
-            center
+            index="02"
+            eyebrow="Engagement Model"
+            title="Audit → Sprint → Retainer."
+            subtitle="Fixed scope first. Implementation next. Ongoing advisory as trust compounds."
           />
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+          <div className="mt-14 grid gap-px bg-[var(--line)] md:grid-cols-3">
             {[
-              { n: "01", title: "Audit", desc: "Map risk, find urgent fixes, deliver a prioritized 90-day roadmap." },
-              { n: "02", title: "Sprint", desc: "Implement the fix — segmentation, access, logging, cloud, AI guardrails." },
-              { n: "03", title: "Retainer", desc: "Ongoing architecture review, change advisory, and evidence support." },
+              { n: "01", title: "Audit", desc: "Map risk. Find urgent fixes. Deliver a prioritized 90-day roadmap.", meta: "10 BUSINESS DAYS" },
+              { n: "02", title: "Sprint", desc: "Implement the fix — segmentation, access, logging, cloud, AI guardrails.", meta: "4-8 WEEKS" },
+              { n: "03", title: "Retainer", desc: "Architecture review, change advisory, and audit-grade evidence support.", meta: "MONTHLY" },
             ].map((s) => (
-              <div key={s.n} className="rounded-lg border border-border bg-card p-7 shadow-sm">
-                <span className="font-display text-sm font-bold text-teal">{s.n}</span>
-                <h3 className="mt-2 text-xl font-semibold">{s.title}</h3>
-                <p className="mt-3 text-sm text-muted-foreground">{s.desc}</p>
+              <div key={s.n} className="relative bg-ink-900 p-9">
+                <div className="flex items-center justify-between">
+                  <span
+                    className="text-5xl font-extrabold text-teal-lit/80"
+                    style={{ fontFamily: "var(--font-display)" }}
+                  >
+                    {s.n}
+                  </span>
+                  <span className="font-mono-label text-[10px] text-muted-foreground">{s.meta}</span>
+                </div>
+                <h3 className="mt-6 text-2xl font-bold">{s.title}</h3>
+                <p className="mt-4 text-sm text-muted-foreground">{s.desc}</p>
               </div>
             ))}
           </div>
@@ -161,14 +193,18 @@ function Home() {
       </section>
 
       {/* Who we help */}
-      <section className="border-t border-border bg-card">
-        <div className="mx-auto max-w-6xl px-6 py-20">
-          <SectionHeading eyebrow="Who we help" title="Built for teams that can't afford a bad cutover." center />
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <section className="border-b border-[var(--line)]">
+        <div className="mx-auto max-w-7xl px-6 py-24">
+          <SectionHeading
+            index="03"
+            eyebrow="Client profile"
+            title="Built for teams that can't afford a bad cutover."
+          />
+          <div className="mt-14 grid gap-px bg-[var(--line)] sm:grid-cols-2 lg:grid-cols-3">
             {industries.map(({ icon: Icon, title, desc }) => (
-              <div key={title} className="rounded-lg border border-border bg-background p-6 shadow-sm">
-                <Icon className="h-6 w-6 text-teal" />
-                <h3 className="mt-4 text-base font-semibold">{title}</h3>
+              <div key={title} className="bg-ink-900 p-7">
+                <Icon className="h-5 w-5 text-teal-lit" strokeWidth={1.5} />
+                <h3 className="mt-5 text-base font-bold">{title}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{desc}</p>
               </div>
             ))}
@@ -177,17 +213,17 @@ function Home() {
       </section>
 
       {/* Why HSI */}
-      <section className="border-t border-border">
-        <div className="mx-auto max-w-6xl px-6 py-20">
-          <SectionHeading eyebrow="Why HSI" title="Three things you can count on." center />
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+      <section className="border-b border-[var(--line)] bg-ink-800/40">
+        <div className="mx-auto max-w-7xl px-6 py-24">
+          <SectionHeading index="04" eyebrow="Operating principles" title="Three things you can count on." />
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
             {values.map(({ icon: Icon, title, desc }) => (
-              <div key={title} className="rounded-lg border border-border bg-card p-7 shadow-sm">
-                <div className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-teal/10 text-teal">
-                  <Icon className="h-5 w-5" />
-                </div>
-                <h3 className="mt-5 text-lg font-semibold">{title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{desc}</p>
+              <div key={title} className="tech-card p-8">
+                <span className="tick-bl" />
+                <span className="tick-br" />
+                <Icon className="h-6 w-6 text-teal-lit" strokeWidth={1.5} />
+                <h3 className="mt-6 text-lg font-bold">{title}</h3>
+                <p className="mt-3 text-sm text-muted-foreground">{desc}</p>
               </div>
             ))}
           </div>
@@ -195,15 +231,18 @@ function Home() {
       </section>
 
       {/* Proof */}
-      <section className="border-t border-border bg-card">
-        <div className="mx-auto max-w-6xl px-6 py-20">
-          <SectionHeading eyebrow="Recent work" title="Outcomes, not hours." center />
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {proofs.map((p) => (
-              <div key={p.title} className="rounded-lg border border-border bg-background p-6 shadow-sm">
-                <CheckCircle2 className="h-5 w-5 text-green" />
-                <p className="mt-4 text-sm font-semibold text-foreground">{p.title}</p>
-                <span className="mt-3 inline-block rounded-full bg-muted px-2.5 py-1 text-xs text-muted-foreground">
+      <section className="border-b border-[var(--line)]">
+        <div className="mx-auto max-w-7xl px-6 py-24">
+          <SectionHeading index="05" eyebrow="Recent operations" title="Outcomes, not hours." />
+          <div className="mt-14 grid gap-px bg-[var(--line)] sm:grid-cols-2 lg:grid-cols-4">
+            {proofs.map((p, i) => (
+              <div key={p.title} className="bg-ink-900 p-7">
+                <div className="flex items-center justify-between">
+                  <span className="font-mono-label text-[10px] text-teal-lit">CASE-{String(i + 1).padStart(3, "0")}</span>
+                  <CheckCircle2 className="h-4 w-4 text-green" strokeWidth={1.5} />
+                </div>
+                <p className="mt-8 text-sm font-semibold text-text leading-snug">{p.title}</p>
+                <span className="mt-5 inline-block border border-[var(--line)] px-2 py-1 font-mono-label text-[10px] text-muted-foreground">
                   {p.tag}
                 </span>
               </div>
@@ -213,8 +252,9 @@ function Home() {
       </section>
 
       <CTABand
+        kicker="Engage"
         title="Not sure where the risk is?"
-        subtitle="Start with a readiness audit. Fixed scope, fixed price, 10 business days."
+        subtitle="Start with a readiness audit. Fixed scope, fixed price, ten business days."
       />
     </>
   );

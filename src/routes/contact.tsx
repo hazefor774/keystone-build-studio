@@ -4,6 +4,8 @@ import { z } from "zod";
 import { toast } from "sonner";
 import { Mail, MapPin, Calendar } from "lucide-react";
 import { TrustBadges } from "@/components/TrustBadges";
+import { Kicker, StatusDot } from "@/components/Kicker";
+import { ArrowRight } from "lucide-react";
 
 const searchSchema = z.object({
   pkg: z.string().optional(),
@@ -86,15 +88,18 @@ function Contact() {
 
   return (
     <>
-      <section className="border-b border-border bg-card">
-        <div className="mx-auto max-w-6xl px-6 py-16">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-teal">Contact</p>
-          <h1 className="mt-3 max-w-3xl text-4xl font-bold sm:text-5xl">
-            Let's scope your project.
+      <section className="border-b border-[var(--line)]">
+        <div className="mx-auto max-w-7xl px-6 pb-12 pt-24">
+          <Kicker index="//" label="Contact" />
+          <h1 className="mt-4 max-w-3xl text-5xl font-extrabold leading-[1] tracking-tight sm:text-6xl">
+            Let's <span className="text-gradient-brand">scope your project.</span>
           </h1>
-          <p className="mt-4 max-w-2xl text-muted-foreground sm:text-lg">
-            Tell us a little about what you're working on, or grab a slot on the calendar.
+          <p className="mt-6 max-w-2xl text-muted-foreground sm:text-lg">
+            Send a note, or grab a slot on the calendar.
           </p>
+          <div className="mt-6">
+            <StatusDot label="Responding within 1 business day" />
+          </div>
         </div>
       </section>
 
@@ -103,9 +108,12 @@ function Contact() {
           <form
             onSubmit={onSubmit}
             data-form="contact-form"
-            className="rounded-lg border border-border bg-card p-8 shadow-sm"
+            className="tech-card p-8"
           >
-            <h2 className="text-xl font-bold">Send a note</h2>
+            <span className="tick-bl" />
+            <span className="tick-br" />
+            <Kicker index="//" label="Transmit" />
+            <h2 className="mt-3 text-2xl font-bold">Send a note</h2>
             <div className="mt-6 grid gap-5 sm:grid-cols-2">
               <Field label="Name" error={errors.name}>
                 <input
@@ -173,19 +181,22 @@ function Contact() {
             <button
               type="submit"
               disabled={submitting}
-              className="gradient-brand mt-7 inline-flex w-full items-center justify-center gap-2 rounded-md px-6 py-3 font-semibold text-white shadow-md transition hover:opacity-95 disabled:opacity-60 sm:w-auto"
+              className="btn-primary mt-8 w-full justify-center sm:w-auto"
             >
-              {submitting ? "Sending…" : "Send message"}
+              {submitting ? "Sending…" : "Transmit"} <ArrowRight className="h-3.5 w-3.5" />
             </button>
           </form>
 
           <div className="space-y-6">
-            <div className="rounded-lg border border-border bg-card p-8 shadow-sm">
-              <h2 className="text-xl font-bold">Or book a 30-minute intro call.</h2>
-              <p className="mt-2 text-sm text-muted-foreground">
+            <div className="tech-card p-8">
+              <span className="tick-bl" />
+              <span className="tick-br" />
+              <Kicker index="//" label="Direct line" />
+              <h2 className="mt-3 text-2xl font-bold">Or book a 30-minute intro call.</h2>
+              <p className="mt-3 text-sm text-muted-foreground">
                 We'll discuss your environment, the highest-risk areas, and which package fits.
               </p>
-              <div className="mt-6 overflow-hidden rounded-md border border-border">
+              <div className="mt-6 overflow-hidden border border-[var(--line)] bg-ink-900">
                 <iframe
                   src="https://calendly.com/hermanstone/intro"
                   title="Book an intro call"
@@ -193,32 +204,32 @@ function Contact() {
                   loading="lazy"
                 />
               </div>
-              <p className="mt-3 text-xs text-muted-foreground">
+              <p className="mt-3 font-mono-label text-[10px] text-muted-foreground">
                 Trouble seeing the calendar? Email{" "}
-                <a href="mailto:hello@hermanstone.com" className="text-teal hover:underline">
+                <a href="mailto:hello@hermanstone.com" className="text-teal-lit hover:underline">
                   hello@hermanstone.com
                 </a>{" "}
                 directly.
               </p>
             </div>
 
-            <div className="rounded-lg border border-border bg-card p-8 shadow-sm">
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-teal">
-                Direct
-              </h3>
-              <ul className="mt-4 space-y-3 text-sm">
+            <div className="tech-card p-8">
+              <span className="tick-bl" />
+              <span className="tick-br" />
+              <h3 className="font-mono-label text-[11px] text-teal-lit">// Channels</h3>
+              <ul className="mt-5 space-y-3 text-sm">
                 <li className="flex items-center gap-2">
-                  <Mail className="h-4 w-4 text-teal" />
-                  <a className="hover:text-teal" href="mailto:hello@hermanstone.com">
+                  <Mail className="h-4 w-4 text-teal-lit" />
+                  <a className="hover:text-teal-lit" href="mailto:hello@hermanstone.com">
                     hello@hermanstone.com
                   </a>
                 </li>
                 <li className="flex items-center gap-2">
-                  <MapPin className="h-4 w-4 text-teal" />
+                  <MapPin className="h-4 w-4 text-teal-lit" />
                   Serving Southern California
                 </li>
                 <li className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4 text-teal" />
+                  <Calendar className="h-4 w-4 text-teal-lit" />
                   Response within 1 business day
                 </li>
               </ul>
@@ -231,23 +242,6 @@ function Contact() {
         </div>
       </section>
 
-      <style>{`
-        .field-input {
-          width: 100%;
-          border-radius: 0.5rem;
-          border: 1px solid var(--color-border);
-          background: var(--color-background);
-          padding: 0.625rem 0.875rem;
-          font-size: 0.875rem;
-          color: var(--color-foreground);
-          outline: none;
-          transition: border-color 0.15s, box-shadow 0.15s;
-        }
-        .field-input:focus {
-          border-color: var(--color-teal);
-          box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-teal) 25%, transparent);
-        }
-      `}</style>
     </>
   );
 }
@@ -263,7 +257,7 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="mb-1.5 block text-xs font-semibold text-foreground">{label}</span>
+      <span className="mb-2 block font-mono-label text-[10px] text-teal-lit">{label}</span>
       {children}
       {error && <span className="mt-1 block text-xs text-destructive">{error}</span>}
     </label>
