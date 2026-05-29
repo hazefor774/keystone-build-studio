@@ -2,10 +2,9 @@ import { createFileRoute, useSearch } from "@tanstack/react-router";
 import { useState } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
-import { Mail, MapPin, Calendar } from "lucide-react";
+import { Mail, MapPin, Calendar, ArrowRight } from "lucide-react";
 import { TrustBadges } from "@/components/TrustBadges";
 import { Kicker, StatusDot } from "@/components/Kicker";
-import { ArrowRight } from "lucide-react";
 
 const searchSchema = z.object({
   pkg: z.string().optional(),
@@ -88,32 +87,36 @@ function Contact() {
 
   return (
     <>
-      <section className="border-b border-[var(--line)]">
-        <div className="mx-auto max-w-7xl px-6 pb-12 pt-24">
-          <Kicker index="//" label="Contact" />
-          <h1 className="mt-4 max-w-3xl text-5xl font-extrabold leading-[1] tracking-tight sm:text-6xl">
+      <section>
+        <div className="mx-auto max-w-7xl px-8 pb-16 pt-28">
+          <Kicker index="—" label="Contact" />
+          <h1
+            className="mt-6 max-w-[22ch] text-[clamp(2.5rem,6vw,5rem)] font-medium leading-[1.02] tracking-tight"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
             Let's <span className="text-gradient-brand">scope your project.</span>
           </h1>
-          <p className="mt-6 max-w-2xl text-muted-foreground sm:text-lg">
-            Send a note, or grab a slot on the calendar.
+          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-soft">
+            Send a note, or grab a slot on the calendar. A thirty-minute intro call is the
+            fastest path to clarity.
           </p>
-          <div className="mt-6">
-            <StatusDot label="Responding within 1 business day" />
+          <div className="mt-8">
+            <StatusDot label="Responding within one business day" />
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-16">
-        <div className="grid gap-10 lg:grid-cols-2">
-          <form
-            onSubmit={onSubmit}
-            data-form="contact-form"
-            className="tech-card p-8"
-          >
-            <span className="tick-bl" />
-            <span className="tick-br" />
-            <Kicker index="//" label="Transmit" />
-            <h2 className="mt-3 text-2xl font-bold">Send a note</h2>
+      <section className="border-t border-[var(--hair)]">
+        <div className="mx-auto max-w-7xl px-8 py-24">
+          <div className="grid gap-20 lg:grid-cols-[1.2fr_1fr]">
+            <form onSubmit={onSubmit} data-form="contact-form">
+              <Kicker index="01" label="Send a note" />
+              <h2
+                className="mt-5 text-3xl font-medium tracking-tight sm:text-4xl"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                Tell us about the work.
+              </h2>
             <div className="mt-6 grid gap-5 sm:grid-cols-2">
               <Field label="Name" error={errors.name}>
                 <input
@@ -178,25 +181,27 @@ function Contact() {
                 </Field>
               </div>
             </div>
-            <button
-              type="submit"
-              disabled={submitting}
-              className="btn-primary mt-8 w-full justify-center sm:w-auto"
-            >
-              {submitting ? "Sending…" : "Transmit"} <ArrowRight className="h-3.5 w-3.5" />
-            </button>
-          </form>
+              <button
+                type="submit"
+                disabled={submitting}
+                className="btn-primary mt-12 w-full justify-center sm:w-auto"
+              >
+                {submitting ? "Sending…" : "Send the note"} <ArrowRight className="h-3.5 w-3.5" />
+              </button>
+            </form>
 
-          <div className="space-y-6">
-            <div className="tech-card p-8">
-              <span className="tick-bl" />
-              <span className="tick-br" />
-              <Kicker index="//" label="Direct line" />
-              <h2 className="mt-3 text-2xl font-bold">Or book a 30-minute intro call.</h2>
-              <p className="mt-3 text-sm text-muted-foreground">
+            <div>
+              <Kicker index="02" label="Or book directly" />
+              <h2
+                className="mt-5 text-3xl font-medium tracking-tight sm:text-4xl"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                A thirty-minute intro call.
+              </h2>
+              <p className="mt-5 max-w-md text-base leading-relaxed text-ink-soft">
                 We'll discuss your environment, the highest-risk areas, and which package fits.
               </p>
-              <div className="mt-6 overflow-hidden border border-[var(--line)] bg-ink-900">
+              <div className="mt-8 overflow-hidden border border-[var(--hair)] bg-paper">
                 <iframe
                   src="https://calendly.com/hermanstone/intro"
                   title="Book an intro call"
@@ -204,44 +209,38 @@ function Contact() {
                   loading="lazy"
                 />
               </div>
-              <p className="mt-3 font-mono-label text-[10px] text-muted-foreground">
+              <p className="mt-4 text-sm text-ink-soft">
                 Trouble seeing the calendar? Email{" "}
-                <a href="mailto:hello@hermanstone.com" className="text-teal-lit hover:underline">
+                <a href="mailto:hello@hermanstone.com" className="link-underline">
                   hello@hermanstone.com
                 </a>{" "}
                 directly.
               </p>
-            </div>
 
-            <div className="tech-card p-8">
-              <span className="tick-bl" />
-              <span className="tick-br" />
-              <h3 className="font-mono-label text-[11px] text-teal-lit">// Channels</h3>
-              <ul className="mt-5 space-y-3 text-sm">
-                <li className="flex items-center gap-2">
-                  <Mail className="h-4 w-4 text-teal-lit" />
-                  <a className="hover:text-teal-lit" href="mailto:hello@hermanstone.com">
+              <ul className="mt-12 space-y-4 border-t border-[var(--hair)] pt-8 text-sm">
+                <li className="flex items-center gap-3">
+                  <Mail className="h-4 w-4 text-ink-soft" />
+                  <a className="link-underline" href="mailto:hello@hermanstone.com">
                     hello@hermanstone.com
                   </a>
                 </li>
-                <li className="flex items-center gap-2">
-                  <MapPin className="h-4 w-4 text-teal-lit" />
+                <li className="flex items-center gap-3 text-ink-soft">
+                  <MapPin className="h-4 w-4" />
                   Serving Southern California
                 </li>
-                <li className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4 text-teal-lit" />
-                  Response within 1 business day
+                <li className="flex items-center gap-3 text-ink-soft">
+                  <Calendar className="h-4 w-4" />
+                  Response within one business day
                 </li>
               </ul>
             </div>
           </div>
-        </div>
 
-        <div className="mt-16">
-          <TrustBadges />
+          <div className="mt-24 border-t border-[var(--hair)] pt-10">
+            <TrustBadges />
+          </div>
         </div>
       </section>
-
     </>
   );
 }
@@ -257,7 +256,7 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="mb-2 block font-mono-label text-[10px] text-teal-lit">{label}</span>
+      <span className="mb-1 block font-mono-label text-[10px] text-ink-soft">{label}</span>
       {children}
       {error && <span className="mt-1 block text-xs text-destructive">{error}</span>}
     </label>

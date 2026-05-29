@@ -1,41 +1,43 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, MapPin } from "lucide-react";
-import { StatusDot } from "./Kicker";
 
 export function SiteFooter() {
   return (
-    <footer className="relative border-t border-[var(--line)] bg-ink-800">
-      <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:grid-cols-3">
-        <div>
+    <footer className="relative border-t border-[var(--hair)] bg-bone">
+      <div className="mx-auto grid max-w-7xl gap-12 px-8 py-20 md:grid-cols-[2fr_1fr_1fr]">
+        <div className="max-w-md">
           <div className="flex items-center gap-2">
             <svg width="18" height="18" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-              <path d="M6 34 L20 6 L34 34" stroke="var(--teal-lit)" strokeWidth="2" />
-              <path d="M13 34 L20 20 L27 34" stroke="var(--green)" strokeWidth="2" />
+              <path d="M6 34 L20 6 L34 34" stroke="var(--ink)" strokeWidth="1.5" />
+              <path d="M13 34 L20 20 L27 34" stroke="var(--teal-deep)" strokeWidth="1.5" />
             </svg>
             <span
-              className="text-sm font-bold uppercase tracking-[0.2em] text-text"
+              className="text-[13px] font-bold uppercase tracking-[0.24em] text-ink"
               style={{ fontFamily: "var(--font-wordmark)" }}
             >
-              Herman Stone <span className="text-teal-lit">INC</span>
+              Herman Stone <span className="text-ink-soft">INC</span>
             </span>
           </div>
-          <p className="mt-4 max-w-sm text-sm text-muted-foreground">
-            Senior network engineering & security consulting for healthcare, enterprise, and
-            public-sector clients across Southern California.
+          <p
+            className="mt-6 text-lg leading-relaxed text-ink-soft"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
+            A boutique advisory practice in senior network engineering and security — serving
+            healthcare, enterprise, and public-sector clients across Southern California.
           </p>
         </div>
         <div>
-          <h3 className="font-mono-label text-[11px] text-teal-lit">// Navigate</h3>
-          <ul className="mt-4 space-y-2.5 text-sm text-muted-foreground">
+          <h3 className="font-mono-label text-[10px] text-ink-soft">Navigate</h3>
+          <ul className="mt-5 space-y-3 text-sm text-ink">
             {[
               { to: "/services", label: "Services" },
               { to: "/packages", label: "Packages" },
               { to: "/about", label: "About" },
-              { to: "/blog", label: "Blog" },
+              { to: "/blog", label: "Perspectives" },
               { to: "/contact", label: "Contact" },
             ].map((l) => (
               <li key={l.to}>
-                <Link to={l.to} className="font-mono-label text-[11px] hover:text-teal-lit">
+                <Link to={l.to} className="link-underline">
                   {l.label}
                 </Link>
               </li>
@@ -43,37 +45,32 @@ export function SiteFooter() {
           </ul>
         </div>
         <div>
-          <h3 className="font-mono-label text-[11px] text-teal-lit">// Channel</h3>
-          <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+          <h3 className="font-mono-label text-[10px] text-ink-soft">Contact</h3>
+          <ul className="mt-5 space-y-3 text-sm text-ink">
             <li className="flex items-center gap-2">
-              <Mail className="h-4 w-4 text-teal-lit" />
-              <a className="hover:text-teal-lit" href="mailto:hello@hermanstone.com">
+              <Mail className="h-3.5 w-3.5 text-ink-soft" />
+              <a className="link-underline" href="mailto:hello@hermanstone.com">
                 hello@hermanstone.com
               </a>
             </li>
-            <li className="flex items-center gap-2">
-              <MapPin className="h-4 w-4 text-teal-lit" />
+            <li className="flex items-center gap-2 text-ink-soft">
+              <MapPin className="h-3.5 w-3.5" />
               Serving Southern California
             </li>
           </ul>
-          <div className="mt-5 flex flex-wrap gap-2 font-mono-label text-[10px] text-muted-foreground">
-            <span className="border border-[var(--line)] px-2 py-1">SAM.gov</span>
-            <span className="border border-[var(--line)] px-2 py-1">NPI 1043191950</span>
-            <span className="border border-[var(--line)] px-2 py-1">CA Corp</span>
+          <div className="mt-8 space-y-1.5 font-mono-label text-[10px] text-ink-soft">
+            <p>SAM.gov Registered</p>
+            <p>NPI 1043191950</p>
+            <p>California Corporation</p>
           </div>
         </div>
       </div>
-      {/* Terminal status bar */}
-      <div className="border-t border-[var(--line)] bg-ink-900">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 py-4 font-mono-label text-[10px] text-muted-foreground sm:flex-row">
-          <div className="flex items-center gap-4">
-            <StatusDot label="System nominal" />
-            <span className="hidden sm:inline">© HSI · CA Corp · 2024</span>
-          </div>
-          <div className="flex items-center gap-4">
-            <span>UPTIME 99.99%</span>
-            <a href="#" className="hover:text-teal-lit">Privacy</a>
-            <a href="#" className="hover:text-teal-lit">Capabilities</a>
+      <div className="border-t border-[var(--hair)]">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-8 py-6 font-mono-label text-[10px] text-ink-soft sm:flex-row">
+          <span>© Herman Stone INC · 2024 · California Corporation</span>
+          <div className="flex items-center gap-6">
+            <a href="#" className="hover:text-ink">Privacy</a>
+            <a href="#" className="hover:text-ink">Capabilities Statement</a>
           </div>
         </div>
       </div>

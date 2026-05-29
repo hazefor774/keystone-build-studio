@@ -1,91 +1,63 @@
+/**
+ * Editorial fine-line topology rendered as quiet art — single-weight strokes,
+ * no animation gimmicks. Sits on the bone canvas as an abstract supporting mark.
+ */
 export function TopologyHero({ className = "" }: { className?: string }) {
-  // Nodes
-  const nodes: Array<{ id: string; x: number; y: number; r?: number; label?: string }> = [
-    { id: "core", x: 320, y: 220, r: 8, label: "CORE" },
-    { id: "n1", x: 80, y: 80, r: 5, label: "BR-01" },
-    { id: "n2", x: 80, y: 360, r: 5, label: "BR-02" },
-    { id: "n3", x: 560, y: 80, r: 5, label: "DC-01" },
-    { id: "n4", x: 560, y: 360, r: 5, label: "AZ-WEST" },
-    { id: "n5", x: 200, y: 220, r: 4 },
-    { id: "n6", x: 440, y: 220, r: 4 },
+  const nodes: Array<{ id: string; x: number; y: number; label?: string }> = [
+    { id: "core", x: 320, y: 220, label: "Core" },
+    { id: "n1", x: 80, y: 90, label: "Branch" },
+    { id: "n2", x: 80, y: 350, label: "Branch" },
+    { id: "n3", x: 560, y: 90, label: "Data Center" },
+    { id: "n4", x: 560, y: 350, label: "Azure West" },
   ];
-  const links = [
+  const links: Array<[string, string]> = [
     ["core", "n1"], ["core", "n2"], ["core", "n3"], ["core", "n4"],
-    ["n5", "core"], ["n6", "core"], ["n1", "n3"], ["n2", "n4"],
+    ["n1", "n3"], ["n2", "n4"],
   ];
   const find = (id: string) => nodes.find((n) => n.id === id)!;
+  const stroke = "rgba(20,32,31,0.45)";
+  const accent = "var(--teal-deep)";
 
   return (
-    <svg
-      viewBox="0 0 640 440"
-      className={`h-full w-full ${className}`}
-      aria-hidden="true"
-    >
-      <defs>
-        <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#1FB6C4" stopOpacity="0.55" />
-          <stop offset="100%" stopColor="#1FB6C4" stopOpacity="0" />
-        </radialGradient>
-        <linearGradient id="linkG" x1="0" x2="1">
-          <stop offset="0%" stopColor="#1FB6C4" stopOpacity="0.7" />
-          <stop offset="100%" stopColor="#3AAE5F" stopOpacity="0.5" />
-        </linearGradient>
-      </defs>
+    <svg viewBox="0 0 640 440" className={`h-full w-full ${className}`} aria-hidden="true">
+      {/* hairline frame */}
+      <rect x="0.5" y="0.5" width="639" height="439" fill="none" stroke="rgba(20,32,31,0.10)" />
 
-      {/* Faint frame */}
-      <rect x="0.5" y="0.5" width="639" height="439" fill="none" stroke="rgba(31,182,196,0.12)" />
-      <text x="10" y="20" fill="#7F9A98" fontSize="10" fontFamily="IBM Plex Mono" letterSpacing="2">
-        TOPOLOGY · LIVE
+      {/* Editorial labels */}
+      <text x="16" y="26" fill="rgba(20,32,31,0.55)" fontSize="9.5" fontFamily="Spline Sans Mono" letterSpacing="2">
+        FIG. 01 — NETWORK ARCHITECTURE
       </text>
-      <text x="540" y="20" fill="#7F9A98" fontSize="10" fontFamily="IBM Plex Mono" letterSpacing="2">
-        642 NODES
+      <text x="500" y="26" fill="rgba(20,32,31,0.55)" fontSize="9.5" fontFamily="Spline Sans Mono" letterSpacing="2">
+        HSI · 2024
       </text>
 
-      {/* Glow under core */}
-      <circle cx="320" cy="220" r="120" fill="url(#coreGlow)" />
-
-      {/* Links with animated packets */}
+      {/* Links */}
       {links.map(([a, b], i) => {
-        const A = find(a);
-        const B = find(b);
-        const id = `path-${i}`;
+        const A = find(a); const B = find(b);
         return (
-          <g key={i}>
-            <path
-              id={id}
-              d={`M${A.x} ${A.y} L${B.x} ${B.y}`}
-              stroke="url(#linkG)"
-              strokeWidth="1"
-              fill="none"
-              className="topo-line"
-              style={{ animationDelay: `${i * 120}ms` }}
-            />
-            <circle r="2.5" fill="#1FB6C4">
-              <animateMotion
-                dur={`${4 + (i % 3)}s`}
-                repeatCount="indefinite"
-                begin={`${i * 0.6}s`}
-              >
-                <mpath href={`#${id}`} />
-              </animateMotion>
-            </circle>
-          </g>
+          <line
+            key={i}
+            x1={A.x} y1={A.y} x2={B.x} y2={B.y}
+            stroke={stroke} strokeWidth="0.75"
+            className="topo-line"
+            style={{ animationDelay: `${i * 140}ms` }}
+          />
         );
       })}
 
-      {/* Nodes */}
+      {/* Nodes — small filled dots with serif-feel labels */}
       {nodes.map((n) => (
         <g key={n.id}>
-          <circle cx={n.x} cy={n.y} r={(n.r || 4) + 4} fill="#0E1F22" stroke="#1FB6C4" strokeOpacity="0.4" />
-          <circle cx={n.x} cy={n.y} r={n.r || 4} fill={n.id === "core" ? "#1FB6C4" : "#3AAE5F"} />
+          <circle cx={n.x} cy={n.y} r={n.id === "core" ? 5 : 3.5} fill={n.id === "core" ? accent : "var(--ink)"} />
+          <circle cx={n.x} cy={n.y} r={n.id === "core" ? 11 : 8} fill="none" stroke={n.id === "core" ? accent : stroke} strokeOpacity={n.id === "core" ? 0.4 : 0.3} />
           {n.label && (
             <text
-              x={n.x + 14}
-              y={n.y + 3}
-              fill="#7F9A98"
-              fontSize="9"
-              fontFamily="IBM Plex Mono"
-              letterSpacing="1.5"
+              x={n.x} y={n.y + 28}
+              textAnchor="middle"
+              fill="rgba(20,32,31,0.6)"
+              fontSize="10"
+              fontFamily="Fraunces"
+              fontStyle="italic"
             >
               {n.label}
             </text>
