@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Check, ArrowRight, Network, UserCheck, ShieldCheck, Workflow } from "lucide-react";
-import { SectionHeading } from "@/components/SectionHeading";
 import { CTABand } from "@/components/CTABand";
+import { Kicker } from "@/components/Kicker";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -79,73 +79,79 @@ const services = [
 function Services() {
   return (
     <>
-      <section className="relative border-b border-border bg-card">
-        <div className="mx-auto max-w-6xl px-6 py-20">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-teal">Services</p>
-          <h1 className="mt-3 max-w-3xl text-4xl font-bold sm:text-5xl">
-            Four capabilities, delivered by a senior engineer.
+      <section className="border-b border-[var(--line)]">
+        <div className="mx-auto max-w-7xl px-6 pb-16 pt-24">
+          <Kicker index="//" label="Services" />
+          <h1 className="mt-4 max-w-3xl text-5xl font-extrabold leading-[1] tracking-tight sm:text-6xl">
+            Four disciplines. <span className="text-gradient-brand">Delivered by a principal.</span>
           </h1>
-          <p className="mt-4 max-w-2xl text-muted-foreground sm:text-lg">
-            Every engagement runs against a written SOW with change-control and rollback built in.
-            We don't put juniors on your network.
+          <p className="mt-6 max-w-2xl text-muted-foreground sm:text-lg">
+            Every engagement runs against a written SOW. Change control and rollback are built in,
+            not added later.
           </p>
-          <nav className="mt-8 flex flex-wrap gap-2">
-            {services.map((s) => (
+          <nav className="mt-10 flex flex-wrap gap-2">
+            {services.map((s, i) => (
               <a
                 key={s.id}
                 href={`#${s.id}`}
-                className="rounded-full border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground/80 transition hover:border-teal hover:text-teal"
+                className="border border-[var(--line)] bg-ink-800 px-3 py-2 font-mono-label text-[10px] text-muted-foreground transition hover:border-teal-lit hover:text-teal-lit"
               >
-                {s.title.split(" ").slice(0, 3).join(" ")}
+                <span className="text-teal-lit">0{i + 1}</span>
+                <span className="mx-2 text-ink-600">/</span>
+                {s.title.split(" ").slice(0, 2).join(" ").toUpperCase()}
               </a>
             ))}
           </nav>
         </div>
       </section>
 
-      <div className="mx-auto max-w-6xl space-y-20 px-6 py-20">
-        {services.map(({ id, icon: Icon, title, overview, deliverables, example }) => (
-          <section key={id} id={id} className="scroll-mt-24 grid gap-8 md:grid-cols-[1fr_1.5fr]">
-            <div>
-              <div className="gradient-brand inline-flex h-12 w-12 items-center justify-center rounded-md text-white">
-                <Icon className="h-6 w-6" />
-              </div>
-              <h2 className="mt-5 text-2xl font-bold sm:text-3xl">{title}</h2>
-              <p className="mt-4 text-muted-foreground">{overview}</p>
+      <div className="mx-auto max-w-7xl space-y-px bg-[var(--line)] px-0 py-px sm:px-6 sm:py-20">
+        {services.map(({ id, icon: Icon, title, overview, deliverables, example }, i) => (
+          <section
+            key={id}
+            id={id}
+            className="scroll-mt-24 grid gap-px bg-[var(--line)] bg-ink-900 md:grid-cols-[1fr_1.5fr]"
+          >
+            <div className="bg-ink-900 p-8 sm:p-10">
+              <span className="font-mono-label text-[10px] text-teal-lit">SVC-{String(i + 1).padStart(3, "0")}</span>
+              <Icon className="mt-6 h-8 w-8 text-teal-lit" strokeWidth={1.25} />
+              <h2 className="mt-6 text-3xl font-bold leading-tight">{title}</h2>
+              <p className="mt-5 text-muted-foreground">{overview}</p>
             </div>
-            <div className="rounded-lg border border-border bg-card p-7 shadow-sm">
-              <p className="text-sm font-semibold uppercase tracking-wider text-teal">
-                What we deliver
-              </p>
-              <ul className="mt-4 space-y-3">
+            <div className="relative bg-ink-800 p-8 sm:p-10">
+              <p className="font-mono-label text-[11px] text-teal-lit">// Deliverables</p>
+              <ul className="mt-6 divide-y divide-[var(--line)]">
                 {deliverables.map((d) => (
-                  <li key={d} className="flex items-start gap-2.5 text-sm">
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-green" />
-                    <span>{d}</span>
+                  <li key={d} className="flex items-start gap-3 py-3 text-sm">
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-green" strokeWidth={2} />
+                    <span className="text-text/90">{d}</span>
                   </li>
                 ))}
               </ul>
-              <p className="mt-5 border-t border-border pt-4 text-sm italic text-muted-foreground">
-                {example}
+              <p className="mt-6 border-t border-[var(--line)] pt-5 text-sm text-muted-foreground">
+                <span className="font-mono-label text-[10px] text-teal-lit">CASE&nbsp;·&nbsp;</span>
+                {example.replace(/^Example:\s*/, "")}
               </p>
             </div>
           </section>
         ))}
-
-        <div className="rounded-lg border border-border bg-card p-8 text-center shadow-sm">
-          <p className="text-lg font-semibold">
-            Most engagements start as a fixed-scope package.
-          </p>
-          <Link
-            to="/packages"
-            className="mt-5 inline-flex items-center gap-2 font-semibold text-teal hover:text-green"
-          >
-            See our packages <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
       </div>
 
-      <CTABand title="Ready to scope your project?" subtitle="A 30-minute intro call is the fastest path to clarity." />
+      <section className="border-y border-[var(--line)] bg-ink-800/40">
+        <div className="mx-auto max-w-7xl px-6 py-16 text-center">
+          <p className="font-mono-label text-[11px] text-teal-lit">// Most engagements start here</p>
+          <p className="mt-4 text-2xl font-bold">Fixed-scope packages, productized.</p>
+          <Link to="/packages" className="btn-ghost mt-7 inline-flex">
+            See our packages <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
+        </div>
+      </section>
+
+      <CTABand
+        kicker="Scope"
+        title="Ready to scope your project?"
+        subtitle="A 30-minute intro call is the fastest path to clarity."
+      />
     </>
   );
 }
