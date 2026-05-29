@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Check, ArrowRight, Network, UserCheck, ShieldCheck, Workflow } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { CTABand } from "@/components/CTABand";
 import { Kicker } from "@/components/Kicker";
 
@@ -20,7 +20,7 @@ export const Route = createFileRoute("/services")({
 const services = [
   {
     id: "sd-wan",
-    icon: Network,
+    n: "I.",
     title: "Cisco SD-WAN & WAN Modernization",
     overview:
       "Catalyst SD-WAN (vManage/cEdge) design and migration for multi-site enterprises, with careful branch cutovers and validated cloud onramps.",
@@ -34,7 +34,7 @@ const services = [
   },
   {
     id: "ise",
-    icon: UserCheck,
+    n: "II.",
     title: "Cisco ISE & Network Access Control",
     overview:
       "ISE cluster design, upgrades, and rollouts of 802.1X across wired and wireless — with lab validation before any production cutover.",
@@ -48,7 +48,7 @@ const services = [
   },
   {
     id: "palo-alto",
-    icon: ShieldCheck,
+    n: "III.",
     title: "Palo Alto Networks Security",
     overview:
       "Panorama-managed PA-series environments, HA pair deployments, template and device-group strategy, plus Prisma SD-WAN and policy hygiene.",
@@ -62,7 +62,7 @@ const services = [
   },
   {
     id: "automation",
-    icon: Workflow,
+    n: "IV.",
     title: "Network Automation & Engineering Standards",
     overview:
       "Python and Ansible automation across IOS-XE, NX-OS, FTD, and SD-WAN — with SSH-safe migration scripting, rollback, and ISO-9001-style documentation.",
@@ -79,70 +79,92 @@ const services = [
 function Services() {
   return (
     <>
-      <section className="border-b border-[var(--line)]">
-        <div className="mx-auto max-w-7xl px-6 pb-16 pt-24">
-          <Kicker index="//" label="Services" />
-          <h1 className="mt-4 max-w-3xl text-5xl font-extrabold leading-[1] tracking-tight sm:text-6xl">
-            Four disciplines. <span className="text-gradient-brand">Delivered by a principal.</span>
+      <section>
+        <div className="mx-auto max-w-7xl px-8 pb-20 pt-28">
+          <Kicker index="—" label="Services" />
+          <h1
+            className="mt-6 max-w-[20ch] text-[clamp(2.5rem,6vw,5rem)] font-medium leading-[1.02] tracking-tight"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
+            Four disciplines.{" "}
+            <span className="text-gradient-brand">Delivered by a principal.</span>
           </h1>
-          <p className="mt-6 max-w-2xl text-muted-foreground sm:text-lg">
-            Every engagement runs against a written SOW. Change control and rollback are built in,
-            not added later.
+          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-soft">
+            Every engagement runs against a written SOW. Change control, peer review, and a
+            tested rollback are defaults — not upsells.
           </p>
-          <nav className="mt-10 flex flex-wrap gap-2">
+          <nav className="mt-14 flex flex-wrap gap-x-10 gap-y-3 border-t border-[var(--hair)] pt-6">
             {services.map((s, i) => (
               <a
                 key={s.id}
                 href={`#${s.id}`}
-                className="border border-[var(--line)] bg-ink-800 px-3 py-2 font-mono-label text-[10px] text-muted-foreground transition hover:border-teal-lit hover:text-teal-lit"
+                className="group flex items-center gap-3 text-sm text-ink-soft hover:text-ink"
               >
-                <span className="text-teal-lit">0{i + 1}</span>
-                <span className="mx-2 text-ink-600">/</span>
-                {s.title.split(" ").slice(0, 2).join(" ").toUpperCase()}
+                <span className="font-mono-label text-[10px] text-ink-soft">{String(i + 1).padStart(2, "0")}</span>
+                <span className="link-underline">{s.title.split(" & ")[0]}</span>
               </a>
             ))}
           </nav>
         </div>
       </section>
 
-      <div className="mx-auto max-w-7xl space-y-px bg-[var(--line)] px-0 py-px sm:px-6 sm:py-20">
-        {services.map(({ id, icon: Icon, title, overview, deliverables, example }, i) => (
+      <div className="mx-auto max-w-7xl px-8">
+        {services.map(({ id, n, title, overview, deliverables, example }, i) => (
           <section
             key={id}
             id={id}
-            className="scroll-mt-24 grid gap-px bg-[var(--line)] bg-ink-900 md:grid-cols-[1fr_1.5fr]"
+            className="scroll-mt-24 grid gap-12 border-t border-[var(--hair)] py-24 lg:grid-cols-[1fr_1.6fr] lg:gap-20"
           >
-            <div className="bg-ink-900 p-8 sm:p-10">
-              <span className="font-mono-label text-[10px] text-teal-lit">SVC-{String(i + 1).padStart(3, "0")}</span>
-              <Icon className="mt-6 h-8 w-8 text-teal-lit" strokeWidth={1.25} />
-              <h2 className="mt-6 text-3xl font-bold leading-tight">{title}</h2>
-              <p className="mt-5 text-muted-foreground">{overview}</p>
+            <div>
+              <span
+                className="text-2xl italic text-ink-soft"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                {n}
+              </span>
+              <h2
+                className="mt-6 text-[clamp(1.875rem,3vw,2.75rem)] font-medium leading-[1.05] tracking-tight"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                {title}
+              </h2>
+              <p className="mt-7 max-w-md text-base leading-relaxed text-ink-soft">{overview}</p>
             </div>
-            <div className="relative bg-ink-800 p-8 sm:p-10">
-              <p className="font-mono-label text-[11px] text-teal-lit">// Deliverables</p>
-              <ul className="mt-6 divide-y divide-[var(--line)]">
+            <div>
+              <p className="font-mono-label text-[10px] text-ink-soft">Deliverables</p>
+              <ul className="mt-6 divide-y divide-[var(--hair)] border-t border-[var(--hair)]">
                 {deliverables.map((d) => (
-                  <li key={d} className="flex items-start gap-3 py-3 text-sm">
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-green" strokeWidth={2} />
-                    <span className="text-text/90">{d}</span>
+                  <li key={d} className="grid grid-cols-[auto_1fr] gap-6 py-5">
+                    <span className="font-mono-label text-[10px] text-ink-soft">—</span>
+                    <span className="text-lg leading-snug text-ink">{d}</span>
                   </li>
                 ))}
               </ul>
-              <p className="mt-6 border-t border-[var(--line)] pt-5 text-sm text-muted-foreground">
-                <span className="font-mono-label text-[10px] text-teal-lit">CASE&nbsp;·&nbsp;</span>
-                {example.replace(/^Example:\s*/, "")}
-              </p>
+              <div className="mt-10 border-l-2 border-teal-deep pl-6">
+                <p className="font-mono-label text-[10px] text-ink-soft">Case</p>
+                <p
+                  className="mt-2 text-lg italic leading-snug text-ink"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  {example.replace(/^Example:\s*/, "")}
+                </p>
+              </div>
             </div>
           </section>
         ))}
       </div>
 
-      <section className="border-y border-[var(--line)] bg-ink-800/40">
-        <div className="mx-auto max-w-7xl px-6 py-16 text-center">
-          <p className="font-mono-label text-[11px] text-teal-lit">// Most engagements start here</p>
-          <p className="mt-4 text-2xl font-bold">Fixed-scope packages, productized.</p>
-          <Link to="/packages" className="btn-ghost mt-7 inline-flex">
-            See our packages <ArrowRight className="h-3.5 w-3.5" />
+      <section className="border-t border-[var(--hair)] bg-paper">
+        <div className="mx-auto max-w-4xl px-8 py-24 text-center">
+          <Kicker index="—" label="Most engagements start here" className="justify-center inline-flex" />
+          <p
+            className="mt-6 text-3xl font-medium tracking-tight sm:text-4xl"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
+            Fixed-scope packages, productized.
+          </p>
+          <Link to="/packages" className="btn-ghost mt-10 inline-flex">
+            View our packages <ArrowRight className="h-3.5 w-3.5" />
           </Link>
         </div>
       </section>
