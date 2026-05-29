@@ -72,7 +72,7 @@ function Blog() {
               <div className="mt-5 flex items-center justify-between text-xs text-muted-foreground">
                 <span className="inline-flex items-center gap-1.5">
                   <Calendar className="h-3.5 w-3.5" />
-                  {new Date(p.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
+                  {new Date(p.date + "T00:00:00Z").toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" })}
                 </span>
                 <span className="inline-flex items-center gap-1 font-medium text-teal opacity-0 transition group-hover:opacity-100">
                   Read <ArrowRight className="h-3.5 w-3.5" />
