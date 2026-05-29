@@ -82,17 +82,17 @@
 
 :root {
   --radius: 0.625rem;
-  /* Network Operations Console — dark-first system */
-  --ink-900: #07100F;
-  --ink-800: #0A1618;
-  --ink-700: #0E1F22;
-  --ink-600: #14292C;
-  --line: rgba(31, 182, 196, 0.14);
+  /* Network Operations Console — light blueprint system */
+  --ink-900: #F6F8F8;
+  --ink-800: #FFFFFF;
+  --ink-700: #F0F4F4;
+  --ink-600: #E2E8E8;
+  --line: rgba(14, 138, 148, 0.18);
   --teal: #0E8A94;
-  --teal-lit: #1FB6C4;
-  --green: #3AAE5F;
-  --text: #E9F2F1;
-  --muted-text: #7F9A98;
+  --teal-lit: #0B6F77;
+  --green: #2E8F4E;
+  --text: #0B1B1D;
+  --muted-text: #5A6E6D;
   --amber: #E8B24A;
   --ink: var(--ink-900);
   --navy: #0A1628;
@@ -105,13 +105,13 @@
   --popover: var(--ink-700);
   --popover-foreground: var(--text);
   --primary: var(--teal-lit);
-  --primary-foreground: var(--ink-900);
+  --primary-foreground: #FFFFFF;
   --secondary: var(--ink-700);
   --secondary-foreground: var(--text);
   --muted: var(--ink-700);
   --muted-foreground: var(--muted-text);
   --accent: var(--green);
-  --accent-foreground: var(--ink-900);
+  --accent-foreground: #FFFFFF;
   --destructive: #E05252;
   --destructive-foreground: var(--text);
   --border: var(--line);
