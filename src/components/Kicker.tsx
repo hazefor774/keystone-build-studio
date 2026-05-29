@@ -6,11 +6,11 @@ interface Props {
 
 export function Kicker({ index, label, className = "" }: Props) {
   return (
-    <p className={`font-mono-label text-[11px] text-muted-foreground ${className}`}>
+    <p className={`font-mono-label text-[11px] text-ink-soft ${className}`}>
       {index && (
         <>
-          <span className="text-teal-lit">{index}</span>
-          <span className="mx-2 text-ink-600">/</span>
+          <span className="text-ink">{index}</span>
+          <span className="mx-2 opacity-50">—</span>
         </>
       )}
       <span>{label}</span>
