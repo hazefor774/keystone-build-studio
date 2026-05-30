@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { TrustBadges } from "@/components/TrustBadges";
 import { CTABand } from "@/components/CTABand";
-import { Kicker, StatusDot } from "@/components/Kicker";
+import { Kicker } from "@/components/Kicker";
 import { KeystoneMonogram } from "@/components/KeystoneMonogram";
 
 export const Route = createFileRoute("/")({
