@@ -5,7 +5,7 @@ import { Menu, X, ArrowRight } from "lucide-react";
 const links = [
   { to: "/", label: "Home" },
   { to: "/services", label: "Services" },
-  { to: "/packages", label: "Packages" },
+  { to: "/packages", label: "Engagements" },
   { to: "/about", label: "About" },
   { to: "/blog", label: "Blog" },
   { to: "/contact", label: "Contact" },
@@ -18,9 +18,9 @@ export function SiteNav() {
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-8">
         {/* Wordmark */}
         <Link to="/" aria-label="Herman Stone INC — Home" className="group flex items-center gap-3">
-          <svg width="20" height="20" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-            <path d="M6 34 L20 6 L34 34" stroke="var(--ink)" strokeWidth="1.5" />
-            <path d="M13 34 L20 20 L27 34" stroke="var(--teal-deep)" strokeWidth="1.5" />
+          <svg width="22" height="22" viewBox="0 0 40 40" fill="none" stroke="var(--ink)" strokeWidth="1.5" aria-hidden="true">
+            <path d="M 12 30 L 28 30 L 32 14 L 8 14 Z" />
+            <line x1="20" y1="6" x2="20" y2="34" stroke="var(--teal)" />
           </svg>
           <span
             className="text-[14px] font-bold uppercase tracking-[0.22em] text-ink"
@@ -48,7 +48,7 @@ export function SiteNav() {
 
         <div className="flex items-center gap-3">
           <Link to="/contact" className="btn-primary hidden sm:inline-flex">
-            Book&nbsp;a&nbsp;Call <ArrowRight className="h-3.5 w-3.5" />
+            Book&nbsp;a&nbsp;scoping&nbsp;call <ArrowRight className="h-3.5 w-3.5" />
           </Link>
           <button
             aria-label={open ? "Close menu" : "Open menu"}
@@ -77,7 +77,7 @@ export function SiteNav() {
               </Link>
             ))}
             <Link to="/contact" onClick={() => setOpen(false)} className="btn-primary mt-4 justify-center">
-              Book&nbsp;a&nbsp;Call <ArrowRight className="h-3.5 w-3.5" />
+              Book&nbsp;a&nbsp;scoping&nbsp;call <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </nav>
         </div>

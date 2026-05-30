@@ -13,7 +13,7 @@ interface CTABandProps {
 export function CTABand({
   title,
   subtitle,
-  ctaLabel = "Book a Call",
+  ctaLabel = "Request a scoped proposal",
   ctaTo = "/contact",
   kicker = "Engage",
 }: CTABandProps) {
