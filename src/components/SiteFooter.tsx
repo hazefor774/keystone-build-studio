@@ -1,23 +1,13 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, MapPin } from "lucide-react";
+import logo from "@/assets/herman-stone-logo.png";
 
 export function SiteFooter() {
   return (
     <footer className="relative border-t border-[var(--hair)] bg-bone">
       <div className="mx-auto grid max-w-7xl gap-12 px-8 py-20 md:grid-cols-[2fr_1fr_1fr]">
         <div className="max-w-md">
-          <div className="flex items-center gap-2">
-            <svg width="20" height="20" viewBox="0 0 40 40" fill="none" stroke="var(--ink)" strokeWidth="1.5" aria-hidden="true">
-              <path d="M 12 30 L 28 30 L 32 14 L 8 14 Z" />
-              <line x1="20" y1="6" x2="20" y2="34" stroke="var(--teal)" />
-            </svg>
-            <span
-              className="text-[13px] font-bold uppercase tracking-[0.24em] text-ink"
-              style={{ fontFamily: "var(--font-wordmark)" }}
-            >
-              Herman Stone <span className="text-ink-soft">INC</span>
-            </span>
-          </div>
+          <img src={logo} alt="Herman Stone INC" className="h-12 w-auto" />
           <p
             className="mt-6 text-lg leading-relaxed text-ink-soft"
             style={{ fontFamily: "var(--font-display)" }}
