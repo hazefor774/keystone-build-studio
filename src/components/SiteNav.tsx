@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X, ArrowRight } from "lucide-react";
+import logo from "@/assets/herman-stone-logo.png";
 
 const links = [
   { to: "/", label: "Home" },
@@ -17,18 +18,8 @@ export function SiteNav() {
     <header className="sticky top-0 z-50 border-b border-[var(--hair)] bg-[color-mix(in_oklab,var(--bone)_92%,transparent)] backdrop-blur-xl">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-8">
         {/* Wordmark */}
-        <Link to="/" aria-label="Herman Stone INC — Home" className="group flex items-center gap-3">
-          <svg width="22" height="22" viewBox="0 0 40 40" fill="none" stroke="var(--ink)" strokeWidth="1.5" aria-hidden="true">
-            <path d="M 12 30 L 28 30 L 32 14 L 8 14 Z" />
-            <line x1="20" y1="6" x2="20" y2="34" stroke="var(--teal)" />
-          </svg>
-          <span
-            className="text-[14px] font-bold uppercase tracking-[0.22em] text-ink"
-            style={{ fontFamily: "var(--font-wordmark)" }}
-          >
-            Herman&nbsp;Stone
-            <span className="ml-2 text-[10px] tracking-[0.3em] text-ink-soft">INC</span>
-          </span>
+        <Link to="/" aria-label="Herman Stone INC — Home" className="group flex items-center">
+          <img src={logo} alt="Herman Stone INC" className="h-12 w-auto" />
         </Link>
 
         {/* Desktop nav */}
