@@ -7,9 +7,9 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-7xl gap-12 px-8 py-20 md:grid-cols-[2fr_1fr_1fr]">
         <div className="max-w-md">
           <div className="flex items-center gap-2">
-            <svg width="18" height="18" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-              <path d="M6 34 L20 6 L34 34" stroke="var(--ink)" strokeWidth="1.5" />
-              <path d="M13 34 L20 20 L27 34" stroke="var(--teal-deep)" strokeWidth="1.5" />
+            <svg width="20" height="20" viewBox="0 0 40 40" fill="none" stroke="var(--ink)" strokeWidth="1.5" aria-hidden="true">
+              <path d="M 12 30 L 28 30 L 32 14 L 8 14 Z" />
+              <line x1="20" y1="6" x2="20" y2="34" stroke="var(--teal)" />
             </svg>
             <span
               className="text-[13px] font-bold uppercase tracking-[0.24em] text-ink"
@@ -31,7 +31,7 @@ export function SiteFooter() {
           <ul className="mt-5 space-y-3 text-sm text-ink">
             {[
               { to: "/services", label: "Services" },
-              { to: "/packages", label: "Packages" },
+              { to: "/packages", label: "Engagements" },
               { to: "/about", label: "About" },
               { to: "/blog", label: "Perspectives" },
               { to: "/contact", label: "Contact" },

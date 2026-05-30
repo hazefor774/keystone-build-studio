@@ -34,7 +34,7 @@ const formSchema = z.object({
   message: z.string().trim().min(10, "Tell us a bit more").max(2000),
 });
 
-const packageOptions = [
+const engagementOptions = [
   { value: "HSI-001", label: "HSI-001 — Readiness Audit" },
   { value: "HSI-002", label: "HSI-002 — Segmentation Sprint" },
   { value: "HSI-003", label: "HSI-003 — Hybrid Cloud Baseline" },
@@ -94,10 +94,10 @@ function Contact() {
             className="mt-6 max-w-[22ch] text-[clamp(2.5rem,6vw,5rem)] font-medium leading-[1.02] tracking-tight"
             style={{ fontFamily: "var(--font-display)" }}
           >
-            Let's <span className="text-gradient-brand">scope your project.</span>
+            Let&rsquo;s <span className="italic text-teal-deep">scope your project.</span>
           </h1>
           <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-soft">
-            Send a note, or grab a slot on the calendar. A thirty-minute intro call is the
+            Send a note, or grab a slot on the calendar. A thirty-minute scoping call is the
             fastest path to clarity.
           </p>
           <div className="mt-8">
@@ -155,13 +155,13 @@ function Contact() {
                 />
               </Field>
               <div className="sm:col-span-2">
-                <Field label="Package / interest" error={errors.pkg}>
+                <Field label="Engagement / interest" error={errors.pkg}>
                   <select
                     value={form.pkg}
                     onChange={(e) => onChange("pkg", e.target.value)}
                     className="field-input"
                   >
-                    {packageOptions.map((o) => (
+                    {engagementOptions.map((o) => (
                       <option key={o.value} value={o.value}>
                         {o.label}
                       </option>
@@ -186,7 +186,7 @@ function Contact() {
                 disabled={submitting}
                 className="btn-primary mt-12 w-full justify-center sm:w-auto"
               >
-                {submitting ? "Sending…" : "Send the note"} <ArrowRight className="h-3.5 w-3.5" />
+                {submitting ? "Sending…" : "Request a scoped proposal"} <ArrowRight className="h-3.5 w-3.5" />
               </button>
             </form>
 
@@ -196,10 +196,11 @@ function Contact() {
                 className="mt-5 text-3xl font-medium tracking-tight sm:text-4xl"
                 style={{ fontFamily: "var(--font-display)" }}
               >
-                A thirty-minute intro call.
+                A thirty-minute scoping call.
               </h2>
               <p className="mt-5 max-w-md text-base leading-relaxed text-ink-soft">
-                We'll discuss your environment, the highest-risk areas, and which package fits.
+                We&rsquo;ll discuss your environment, the highest-risk areas, and which
+                engagement fits.
               </p>
               <div className="mt-8 overflow-hidden border border-[var(--hair)] bg-paper">
                 <iframe
