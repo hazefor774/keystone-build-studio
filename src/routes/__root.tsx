@@ -96,7 +96,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "@context": "https://schema.org",
           "@type": "Organization",
           name: "Herman Stone INC",
-          founder: { "@type": "Person", name: "Stone Azefor" },
           areaServed: "Southern California",
           email: "hello@hermanstone.com",
           foundingDate: "2024",
