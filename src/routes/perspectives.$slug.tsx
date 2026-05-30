@@ -6,6 +6,7 @@ import {
   getPerspective,
   perspectives,
   formatPerspectiveDate,
+  type Perspective,
 } from "@/lib/perspectives";
 
 export const Route = createFileRoute("/perspectives/$slug")({
@@ -63,7 +64,7 @@ function NotFound() {
 }
 
 function PerspectiveDetail() {
-  const { post } = Route.useLoaderData();
+  const { post } = Route.useLoaderData() as { post: Perspective };
   const idx = perspectives.findIndex((p) => p.slug === post.slug);
   const next = perspectives[(idx + 1) % perspectives.length];
 
