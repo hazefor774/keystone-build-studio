@@ -7,7 +7,7 @@ const links = [
   { to: "/services", label: "Services" },
   { to: "/packages", label: "Engagements" },
   { to: "/about", label: "About" },
-  { to: "/blog", label: "Blog" },
+  { to: "/perspectives", label: "Perspectives" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
@@ -41,7 +41,7 @@ export function SiteNav() {
               activeOptions={{ exact: l.to === "/" }}
               className="group relative text-[13px] text-ink-soft transition-colors hover:text-ink after:absolute after:left-0 after:-bottom-1.5 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-green after:transition-transform after:duration-300 hover:after:scale-x-100"
             >
-              {l.label === "Blog" ? "Perspectives" : l.label}
+              {l.label}
             </Link>
           ))}
         </nav>
@@ -73,7 +73,7 @@ export function SiteNav() {
                 activeOptions={{ exact: l.to === "/" }}
                 className="border-b border-[var(--hair)] py-4 text-base text-ink-soft hover:text-ink"
               >
-                {l.label === "Blog" ? "Perspectives" : l.label}
+                {l.label}
               </Link>
             ))}
             <Link to="/contact" onClick={() => setOpen(false)} className="btn-primary mt-4 justify-center">

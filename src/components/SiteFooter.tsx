@@ -33,7 +33,7 @@ export function SiteFooter() {
               { to: "/services", label: "Services" },
               { to: "/packages", label: "Engagements" },
               { to: "/about", label: "About" },
-              { to: "/blog", label: "Perspectives" },
+              { to: "/perspectives", label: "Perspectives" },
               { to: "/contact", label: "Contact" },
             ].map((l) => (
               <li key={l.to}>

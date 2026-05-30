@@ -1,54 +1,31 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { Kicker } from "@/components/Kicker";
+import { perspectives, formatPerspectiveDate } from "@/lib/perspectives";
 
-export const Route = createFileRoute("/blog")({
+export const Route = createFileRoute("/perspectives/")({
   head: () => ({
     meta: [
       { title: "Perspectives — Herman Stone INC" },
-      { name: "description", content: "Field notes on Cisco SD-WAN cutovers, ISE upgrades, Palo Alto HA deployments, and network automation." },
+      {
+        name: "description",
+        content:
+          "Field notes on Cisco SD-WAN cutovers, ISE upgrades, Palo Alto HA deployments, and network automation — written from real engagements.",
+      },
       { property: "og:title", content: "Perspectives — Herman Stone INC" },
-      { property: "og:description", content: "Lessons learned from senior network engineering work." },
-      { property: "og:url", content: "/blog" },
+      {
+        property: "og:description",
+        content: "Senior network engineering essays from the production-cutover side of the work.",
+      },
+      { property: "og:url", content: "/perspectives" },
     ],
-    links: [{ rel: "canonical", href: "/blog" }],
+    links: [{ rel: "canonical", href: "/perspectives" }],
   }),
-  component: Blog,
+  component: PerspectivesIndex,
 });
 
-const posts = [
-  {
-    slug: "pa-450-ha-branch-cutover",
-    title: "Designing a zero-downtime PA-450 HA branch cutover",
-    date: "2025-09-12",
-    tag: "Palo Alto",
-    excerpt:
-      "Why HA-pair cutovers fail in practice, and the staged plan we use to land a clean failover with no user-visible impact.",
-  },
-  {
-    slug: "ise-cluster-upgrades",
-    title: "ISE cluster upgrades without the 2 a.m. surprises",
-    date: "2025-08-04",
-    tag: "Cisco ISE",
-    excerpt:
-      "A pre-flight checklist, validation lab patterns, and the small details that make ISE upgrades feel boring — in a good way.",
-  },
-  {
-    slug: "sd-wan-rollback",
-    title: "Why your SD-WAN migration needs a rollback plan before a single command",
-    date: "2025-07-15",
-    tag: "SD-WAN",
-    excerpt:
-      "The cheapest insurance in network engineering: a tested, written rollback that any engineer on call can execute under pressure.",
-  },
-];
-
-function Blog() {
-  const [featured, ...rest] = posts;
-  const fmt = (d: string) =>
-    new Date(d + "T00:00:00Z").toLocaleDateString("en-US", {
-      month: "long", day: "numeric", year: "numeric", timeZone: "UTC",
-    });
+function PerspectivesIndex() {
+  const [featured, ...rest] = perspectives;
 
   return (
     <>
@@ -72,8 +49,9 @@ function Blog() {
       {/* Featured */}
       <section className="border-y border-[var(--hair)] bg-paper">
         <div className="mx-auto max-w-7xl px-8 py-24">
-          <a
-            href="#"
+          <Link
+            to="/perspectives/$slug"
+            params={{ slug: featured.slug }}
             className="group grid gap-12 lg:grid-cols-[1.2fr_1fr] lg:items-end lg:gap-20"
           >
             <div>
@@ -82,7 +60,9 @@ function Blog() {
                 <span>·</span>
                 <span>{featured.tag}</span>
                 <span>·</span>
-                <span>{fmt(featured.date)}</span>
+                <span>{formatPerspectiveDate(featured.date)}</span>
+                <span>·</span>
+                <span>{featured.readingTime}</span>
               </div>
               <h2
                 className="mt-8 text-[clamp(2rem,4.5vw,3.75rem)] font-medium leading-[1.05] tracking-tight"
@@ -97,7 +77,7 @@ function Blog() {
                 Read the perspective <ArrowRight className="h-3.5 w-3.5" />
               </span>
             </div>
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -108,8 +88,9 @@ function Blog() {
           <ul className="mt-10">
             {rest.map((p) => (
               <li key={p.slug}>
-                <a
-                  href="#"
+                <Link
+                  to="/perspectives/$slug"
+                  params={{ slug: p.slug }}
                   className="group grid items-baseline gap-6 border-b border-[var(--hair)] py-10 lg:grid-cols-[140px_1fr_220px_auto] lg:gap-12"
                 >
                   <span className="font-mono-label text-[10px] text-ink-soft">{p.tag}</span>
@@ -119,9 +100,11 @@ function Blog() {
                   >
                     {p.title}
                   </h3>
-                  <span className="font-mono-label text-[10px] text-ink-soft">{fmt(p.date)}</span>
+                  <span className="font-mono-label text-[10px] text-ink-soft">
+                    {formatPerspectiveDate(p.date)}
+                  </span>
                   <ArrowRight className="h-4 w-4 text-ink-soft transition group-hover:translate-x-1 group-hover:text-ink" />
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
