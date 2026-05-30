@@ -87,7 +87,7 @@ function Services() {
             style={{ fontFamily: "var(--font-display)" }}
           >
             Four disciplines.{" "}
-            <span className="text-gradient-brand">Delivered by a principal.</span>
+            <span className="italic text-teal-deep">Delivered by a principal.</span>
           </h1>
           <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-soft">
             Every engagement runs against a written SOW. Change control, peer review, and a
@@ -161,10 +161,10 @@ function Services() {
             className="mt-6 text-3xl font-medium tracking-tight sm:text-4xl"
             style={{ fontFamily: "var(--font-display)" }}
           >
-            Fixed-scope packages, productized.
+            Fixed-scope engagements, productized.
           </p>
           <Link to="/packages" className="btn-ghost mt-10 inline-flex">
-            View our packages <ArrowRight className="h-3.5 w-3.5" />
+            View our engagements <ArrowRight className="h-3.5 w-3.5" />
           </Link>
         </div>
       </section>
@@ -172,7 +172,8 @@ function Services() {
       <CTABand
         kicker="Scope"
         title="Ready to scope your project?"
-        subtitle="A 30-minute intro call is the fastest path to clarity."
+        subtitle="A 30-minute scoping call is the fastest path to clarity."
+        ctaLabel="Request a scoped proposal"
       />
     </>
   );

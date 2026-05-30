@@ -60,7 +60,7 @@ function Blog() {
             style={{ fontFamily: "var(--font-display)" }}
           >
             Lessons from the{" "}
-            <span className="text-gradient-brand">production-cutover side</span> of the network.
+            <span className="italic text-teal-deep">production-cutover side</span> of the network.
           </h1>
           <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-soft">
             A senior point of view on the work — specific, written from real engagements, free of

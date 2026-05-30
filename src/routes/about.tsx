@@ -2,13 +2,13 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { TrustBadges } from "@/components/TrustBadges";
 import { Kicker } from "@/components/Kicker";
-import founderPortrait from "@/assets/founder-portrait.jpg";
+import { KeystoneMonogram } from "@/components/KeystoneMonogram";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
       { title: "About — Herman Stone INC" },
-      { name: "description", content: "Led by Stone Azefor. 18+ years senior network engineering across Cisco and Palo Alto, serving healthcare, enterprise, and public-sector clients in Southern California." },
+      { name: "description", content: "A boutique advisory practice in senior network engineering — 18+ years across Cisco and Palo Alto, serving healthcare, enterprise, and public-sector clients in Southern California." },
       { property: "og:title", content: "About — Herman Stone INC" },
       { property: "og:description", content: "Senior-only delivery, rigorous change control, audit-ready documentation." },
       { property: "og:url", content: "/about" },
@@ -36,7 +36,7 @@ function About() {
             style={{ fontFamily: "var(--font-display)" }}
           >
             A senior network practice,{" "}
-            <span className="text-gradient-brand">built for work that has to be right.</span>
+            <span className="italic text-teal-deep">built for work that has to be right.</span>
           </h1>
           <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-soft">
             Herman Stone INC is a California corporation founded in 2024 — a boutique advisory
@@ -46,31 +46,27 @@ function About() {
         </div>
       </section>
 
-      {/* Founder — large editorial spread */}
+      {/* Principal — anonymous editorial spread, monogram instead of portrait */}
       <section className="border-t border-[var(--hair)]">
         <div className="mx-auto grid max-w-7xl gap-16 px-8 py-24 lg:grid-cols-[1fr_1.6fr] lg:gap-24">
           <div>
-            <div className="aspect-[4/5] overflow-hidden border border-[var(--hair)] bg-paper">
-              <img
-                src={founderPortrait}
-                alt="Stone Azefor — Founder and Principal Engineer, Herman Stone INC"
-                width={896}
-                height={1152}
-                className="h-full w-full object-cover"
-                style={{ filter: "saturate(0.85) contrast(1.02)" }}
-              />
+            <div className="aspect-[4/5] flex items-center justify-center border border-[var(--hair)] bg-paper-2 p-10">
+              <KeystoneMonogram className="h-auto w-full max-w-[320px] text-teal-deep" strokeWidth={1.1} />
             </div>
+            <p className="mt-5 font-mono-label text-[10px] text-ink-soft">
+              The keystone — our recurring mark
+            </p>
           </div>
           <div>
-            <Kicker index="01" label="Founder" />
+            <Kicker index="01" label="The principal" />
             <h2
               className="mt-5 text-[clamp(2.5rem,5vw,4rem)] font-medium leading-[1.02] tracking-tight"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              Stone Azefor
+              Our Principal Engineer
             </h2>
             <p className="mt-3 font-mono-label text-[11px] text-ink-soft">
-              Principal · Network &amp; Security Engineer
+              Anonymous by design · Senior on every engagement
             </p>
             <p
               className="mt-10 text-2xl leading-snug text-ink"
@@ -82,9 +78,9 @@ function About() {
               Southern California.
             </p>
             <p className="mt-7 max-w-[60ch] text-base leading-relaxed text-ink-soft">
-              Every engagement is senior-only. Rigorous change control, peer-reviewed cuts, and
-              audit-ready documentation are defaults, not upsells — because the work has to be
-              right the first time.
+              We work anonymously and let the substance speak. Every engagement is senior-only.
+              Rigorous change control, peer-reviewed cuts, and audit-ready documentation are
+              defaults, not upsells — because the work has to be right the first time.
             </p>
 
             <dl className="mt-12 grid gap-px border-y border-[var(--hair)] bg-[var(--hair)] sm:grid-cols-3">
@@ -93,7 +89,7 @@ function About() {
                 ["Stack", "Cisco · PAN"],
                 ["Region", "SoCal"],
               ].map(([k, v]) => (
-                <div key={k} className="bg-bone py-6">
+                <div key={k} className="bg-paper py-6 px-6">
                   <dt className="font-mono-label text-[10px] text-ink-soft">{k}</dt>
                   <dd
                     className="mt-2 text-3xl font-medium text-ink"
@@ -145,7 +141,7 @@ function About() {
           </h2>
           <ul className="mt-14 grid gap-px bg-[var(--hair)] sm:grid-cols-2">
             {principles.map((p) => (
-              <li key={p.n} className="bg-bone p-10">
+              <li key={p.n} className="bg-paper p-10">
                 <span
                   className="text-2xl italic text-ink-soft"
                   style={{ fontFamily: "var(--font-display)" }}
@@ -164,7 +160,7 @@ function About() {
           </ul>
           <div className="mt-16 text-center">
             <Link to="/contact" className="btn-primary">
-              Let's talk <ArrowRight className="h-3.5 w-3.5" />
+              Request a scoped proposal <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>
         </div>
