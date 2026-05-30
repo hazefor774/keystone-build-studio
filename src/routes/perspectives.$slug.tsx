@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Kicker } from "@/components/Kicker";
 import { KeystoneGlyph } from "@/components/KeystoneMonogram";
+import { getRequestOrigin } from "@/lib/origin.functions";
 import {
   getPerspective,
   perspectives,
@@ -10,15 +11,47 @@ import {
 } from "@/lib/perspectives";
 
 export const Route = createFileRoute("/perspectives/$slug")({
-  loader: ({ params }) => {
+  loader: async ({ params }) => {
     const post = getPerspective(params.slug);
     if (!post) throw notFound();
-    return { post };
+    const origin = await getRequestOrigin();
+    return { post, origin };
   },
   head: ({ loaderData }) => {
     const post = loaderData?.post;
-    const title = post ? `${post.title} — Perspectives` : "Perspective — Herman Stone INC";
-    const description = post?.excerpt ?? "A senior network engineering perspective.";
+    const origin = loaderData?.origin ?? "";
+    const title = post
+      ? `${post.title} — Perspectives`
+      : "Perspective — Herman Stone INC";
+    const description =
+      post?.excerpt ?? "A senior network engineering perspective.";
+    const ogImage = origin
+      ? `${origin}/og-perspectives.jpg`
+      : "/og-perspectives.jpg";
+    const pageUrl = post
+      ? `${origin}/perspectives/${post.slug}`
+      : `${origin}/perspectives`;
+
+    const jsonLd = post
+      ? {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: post.title,
+          description: post.excerpt,
+          datePublished: post.date,
+          author: {
+            "@type": "Organization",
+            name: "Herman Stone INC",
+          },
+          publisher: {
+            "@type": "Organization",
+            name: "Herman Stone INC",
+          },
+          url: pageUrl,
+          image: ogImage,
+        }
+      : null;
+
     return {
       meta: [
         { title },
@@ -26,9 +59,23 @@ export const Route = createFileRoute("/perspectives/$slug")({
         { property: "og:title", content: title },
         { property: "og:description", content: description },
         { property: "og:type", content: "article" },
-        ...(post ? [{ property: "og:url", content: `/perspectives/${post.slug}` }] : []),
+        { property: "og:url", content: pageUrl },
+        ...(origin ? [{ property: "og:image", content: ogImage }] : []),
       ],
-      links: post ? [{ rel: "canonical", href: `/perspectives/${post.slug}` }] : [],
+      links: [
+        {
+          rel: "canonical",
+          href: post ? `/perspectives/${post.slug}` : "/perspectives",
+        },
+      ],
+      scripts: jsonLd
+        ? [
+            {
+              type: "application/ld+json",
+              children: JSON.stringify(jsonLd),
+            },
+          ]
+        : [],
     };
   },
   notFoundComponent: NotFound,
