@@ -3,8 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { TrustBadges } from "@/components/TrustBadges";
 import { CTABand } from "@/components/CTABand";
 import { Kicker, StatusDot } from "@/components/Kicker";
-import { TopologyHero } from "@/components/TopologyHero";
-import founderPortrait from "@/assets/founder-portrait.jpg";
+import { KeystoneMonogram } from "@/components/KeystoneMonogram";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -40,55 +39,55 @@ function Home() {
   return (
     <>
       {/* Hero — left-weighted editorial statement */}
-      <section className="relative">
-        <div className="mx-auto grid max-w-7xl gap-16 px-8 pb-32 pt-24 sm:pt-32 lg:grid-cols-[1.25fr_1fr] lg:items-end lg:gap-20">
+      <section className="anchor-deep relative overflow-hidden">
+        {/* Oversized watermark monogram bleeding off the edge */}
+        <KeystoneMonogram
+          className="pointer-events-none absolute -right-24 -top-10 h-[680px] w-[680px] opacity-[0.06] text-bone"
+          color="currentColor"
+          strokeWidth={0.8}
+        />
+        <div className="relative mx-auto grid max-w-7xl gap-16 px-8 pb-32 pt-28 sm:pt-36 lg:grid-cols-[1.3fr_1fr] lg:items-center lg:gap-24">
           <div>
             <div className="reveal reveal-1">
-              <StatusDot label="Accepting Q3 engagements · Southern California" />
+              <p className="font-mono-label text-[10px] text-bone/70">
+                Accepting Q3 engagements · Southern California
+              </p>
             </div>
             <h1
-              className="reveal reveal-2 mt-10 max-w-[18ch] text-[clamp(2.5rem,6.4vw,5.5rem)] font-medium leading-[1.02] tracking-tight"
-              style={{ fontFamily: "var(--font-display)", fontVariationSettings: '"opsz" 144' }}
+              className="reveal reveal-2 mt-10 max-w-[20ch] text-[clamp(2.5rem,6.4vw,5.5rem)] font-medium leading-[1.04] tracking-tight text-[#F2EFE8]"
+              style={{ fontFamily: "var(--font-display)", fontVariationSettings: '"opsz" 72' }}
             >
-              Senior network and security architecture for organizations that{" "}
-              <span className="text-gradient-brand">can't afford to get it wrong.</span>
+              Senior network and security architecture for organizations that can&rsquo;t
+              <span className="italic text-[#A7D9DE]"> afford to get it wrong.</span>
             </h1>
-            <p className="reveal reveal-3 mt-10 max-w-[52ch] text-lg leading-relaxed text-ink-soft">
-              A boutique advisory practice led by a single principal — fixed-scope audits,
-              implementation sprints, and ongoing architecture review. No juniors learning on your
-              network.
+            <p className="reveal reveal-3 mt-10 max-w-[56ch] text-lg leading-relaxed text-bone/75">
+              A boutique advisory practice. Fixed-scope audits, implementation sprints, and
+              ongoing architecture review — delivered by our principal engineer. No juniors
+              learning on your network.
             </p>
             <div className="reveal reveal-4 mt-12 flex flex-wrap items-center gap-10">
               <Link to="/contact" className="btn-primary">
-                Book an intro call <ArrowRight className="h-3.5 w-3.5" />
+                Book a scoping call <ArrowRight className="h-3.5 w-3.5" />
               </Link>
-              <Link to="/packages" className="btn-ghost">
-                View our packages
+              <Link to="/packages" className="text-sm uppercase tracking-[0.16em] text-bone/80 hover:text-white">
+                View engagements →
               </Link>
             </div>
           </div>
 
-          <div className="reveal reveal-3 relative">
-            <div className="aspect-[4/5] overflow-hidden border border-[var(--hair)] bg-paper">
-              <img
-                src={founderPortrait}
-                alt="Stone Azefor, founder and principal network engineer at Herman Stone INC"
-                width={896}
-                height={1152}
-                className="h-full w-full object-cover"
-                style={{ filter: "saturate(0.85) contrast(1.02)" }}
-              />
-            </div>
-            <div className="mt-5 flex items-baseline justify-between font-mono-label text-[10px] text-ink-soft">
-              <span>Stone Azefor</span>
-              <span>Principal · Founder</span>
-            </div>
+          {/* Keystone monogram — the hero centerpiece */}
+          <div className="reveal reveal-3 relative flex items-center justify-center">
+            <KeystoneMonogram
+              className="h-auto w-full max-w-[440px] text-[#A7D9DE]"
+              strokeWidth={1.1}
+              animate
+            />
           </div>
         </div>
       </section>
 
       {/* Proof band — oversized numbers, hairline separated */}
-      <section className="border-y border-[var(--hair)] bg-paper">
+      <section className="border-b border-[var(--hair)] bg-paper">
         <div className="mx-auto max-w-7xl px-8 py-20">
           <Kicker index="01" label="In the field" />
           <div className="mt-12 grid gap-px bg-[var(--hair)] sm:grid-cols-2 lg:grid-cols-4">
@@ -107,40 +106,24 @@ function Home() {
         </div>
       </section>
 
-      {/* Founder statement — deep teal anchor */}
+      {/* Principal statement — deep teal anchor, anonymous */}
       <section className="anchor-deep relative">
-        <div className="mx-auto grid max-w-6xl gap-16 px-8 py-28 sm:py-36 lg:grid-cols-[1fr_1.8fr] lg:items-center">
-          <div>
-            <div className="aspect-square overflow-hidden border border-white/10">
-              <img
-                src={founderPortrait}
-                alt="Portrait of Stone Azefor"
-                width={600}
-                height={600}
-                loading="lazy"
-                className="h-full w-full object-cover"
-                style={{ filter: "saturate(0.7) contrast(1.05) brightness(0.95)" }}
-              />
-            </div>
-            <p className="mt-5 font-mono-label text-[10px] text-bone/60">02 — A note from the principal</p>
-          </div>
-          <div>
-            <p
-              className="text-[clamp(1.5rem,2.4vw,2.25rem)] font-medium leading-[1.25] tracking-tight"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              "Eighteen years on the production-cutover side of the network teaches you one thing
-              above all: the engineer who knows how to roll back is the engineer you want
-              holding the keyboard. Every engagement I take is senior, rehearsed, and
-              reversible — because the work has to be right the first time."
+        <div className="mx-auto max-w-5xl px-8 py-32 sm:py-40">
+          <p className="font-mono-label text-[10px] text-bone/60">02 — A note from our principal engineer</p>
+          <blockquote
+            className="mt-10 text-[clamp(1.75rem,3.4vw,2.875rem)] font-medium leading-[1.2] tracking-tight text-[#F2EFE8]"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
+            &ldquo;Eighteen years on the production-cutover side of the network teaches you one
+            thing above all: the engineer who knows how to roll back is the engineer you want
+            holding the keyboard. Every engagement here is senior, rehearsed, and reversible
+            &mdash; because the work has to be right the first time.&rdquo;
+          </blockquote>
+          <div className="mt-12 flex items-center gap-6">
+            <div className="h-px w-10 bg-green/80" />
+            <p className="font-mono-label text-[10px] text-bone/70">
+              Our Principal Engineer · Herman Stone INC
             </p>
-            <div className="mt-10 flex items-center gap-6">
-              <div className="h-px w-10 bg-green/70" />
-              <div>
-                <p className="text-lg font-medium" style={{ fontFamily: "var(--font-display)" }}>Stone Azefor</p>
-                <p className="font-mono-label text-[10px] text-bone/65">Founder · Principal Engineer · Herman Stone INC</p>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -257,21 +240,21 @@ function Home() {
         </div>
       </section>
 
-      {/* Abstract topology mark — fine art interlude */}
-      <section className="border-y border-[var(--hair)] bg-paper">
-        <div className="mx-auto grid max-w-7xl gap-12 px-8 py-24 lg:grid-cols-[1fr_1.5fr] lg:items-center">
+      {/* Keystone interlude — section divider with monogram */}
+      <section className="border-y border-[var(--hair)] bg-paper-2">
+        <div className="mx-auto grid max-w-7xl gap-12 px-8 py-28 lg:grid-cols-[1.2fr_1fr] lg:items-center">
           <div>
-            <Kicker index="06" label="Architecture, drawn plainly" />
+            <Kicker index="06" label="The keystone" />
             <p
-              className="mt-6 text-2xl leading-snug text-ink"
+              className="mt-6 max-w-xl text-2xl leading-snug text-ink"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              Every engagement begins with a diagram you can actually defend — the
-              network as it is, the network as it should be, and the path between the two.
+              The keystone is the wedge at the crown of an arch — the single stone that holds
+              every other in place. It is how we think about the work we do.
             </p>
           </div>
-          <div className="aspect-[16/11] border border-[var(--hair)] bg-bone p-4">
-            <TopologyHero />
+          <div className="flex items-center justify-center">
+            <KeystoneMonogram className="h-auto w-full max-w-[360px] text-teal-deep" strokeWidth={1} />
           </div>
         </div>
       </section>
@@ -286,7 +269,8 @@ function Home() {
       <CTABand
         kicker="Engage"
         title="Not sure where the risk is? Start with a readiness audit."
-        subtitle="Fixed scope, fixed price, ten business days. We'll know what to fix — and in what order — by week two."
+        subtitle="Fixed scope, ten business days. We'll know what to fix — and in what order — by week two."
+        ctaLabel="Request a scoped proposal"
       />
     </>
   );
