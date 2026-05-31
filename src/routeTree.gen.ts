@@ -9,15 +9,24 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WorkRouteImport } from './routes/work'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PackagesRouteImport } from './routes/packages'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CapabilitiesRouteImport } from './routes/capabilities'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PerspectivesIndexRouteImport } from './routes/perspectives.index'
+import { Route as WorkSlugRouteImport } from './routes/work.$slug'
 import { Route as PerspectivesSlugRouteImport } from './routes/perspectives.$slug'
 
+const WorkRoute = WorkRouteImport.update({
+  id: '/work',
+  path: '/work',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
@@ -28,6 +37,11 @@ const ServicesRoute = ServicesRouteImport.update({
   path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PackagesRoute = PackagesRouteImport.update({
   id: '/packages',
   path: '/packages',
@@ -36,6 +50,11 @@ const PackagesRoute = PackagesRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CapabilitiesRoute = CapabilitiesRouteImport.update({
+  id: '/capabilities',
+  path: '/capabilities',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -53,6 +72,11 @@ const PerspectivesIndexRoute = PerspectivesIndexRouteImport.update({
   path: '/perspectives/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WorkSlugRoute = WorkSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => WorkRoute,
+} as any)
 const PerspectivesSlugRoute = PerspectivesSlugRouteImport.update({
   id: '/perspectives/$slug',
   path: '/perspectives/$slug',
@@ -62,32 +86,44 @@ const PerspectivesSlugRoute = PerspectivesSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/capabilities': typeof CapabilitiesRoute
   '/contact': typeof ContactRoute
   '/packages': typeof PackagesRoute
+  '/privacy': typeof PrivacyRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/work': typeof WorkRouteWithChildren
   '/perspectives/$slug': typeof PerspectivesSlugRoute
+  '/work/$slug': typeof WorkSlugRoute
   '/perspectives/': typeof PerspectivesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/capabilities': typeof CapabilitiesRoute
   '/contact': typeof ContactRoute
   '/packages': typeof PackagesRoute
+  '/privacy': typeof PrivacyRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/work': typeof WorkRouteWithChildren
   '/perspectives/$slug': typeof PerspectivesSlugRoute
+  '/work/$slug': typeof WorkSlugRoute
   '/perspectives': typeof PerspectivesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/capabilities': typeof CapabilitiesRoute
   '/contact': typeof ContactRoute
   '/packages': typeof PackagesRoute
+  '/privacy': typeof PrivacyRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/work': typeof WorkRouteWithChildren
   '/perspectives/$slug': typeof PerspectivesSlugRoute
+  '/work/$slug': typeof WorkSlugRoute
   '/perspectives/': typeof PerspectivesIndexRoute
 }
 export interface FileRouteTypes {
@@ -95,47 +131,69 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/capabilities'
     | '/contact'
     | '/packages'
+    | '/privacy'
     | '/services'
     | '/sitemap.xml'
+    | '/work'
     | '/perspectives/$slug'
+    | '/work/$slug'
     | '/perspectives/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
+    | '/capabilities'
     | '/contact'
     | '/packages'
+    | '/privacy'
     | '/services'
     | '/sitemap.xml'
+    | '/work'
     | '/perspectives/$slug'
+    | '/work/$slug'
     | '/perspectives'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/capabilities'
     | '/contact'
     | '/packages'
+    | '/privacy'
     | '/services'
     | '/sitemap.xml'
+    | '/work'
     | '/perspectives/$slug'
+    | '/work/$slug'
     | '/perspectives/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  CapabilitiesRoute: typeof CapabilitiesRoute
   ContactRoute: typeof ContactRoute
   PackagesRoute: typeof PackagesRoute
+  PrivacyRoute: typeof PrivacyRoute
   ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  WorkRoute: typeof WorkRouteWithChildren
   PerspectivesSlugRoute: typeof PerspectivesSlugRoute
   PerspectivesIndexRoute: typeof PerspectivesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/work': {
+      id: '/work'
+      path: '/work'
+      fullPath: '/work'
+      preLoaderRoute: typeof WorkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
@@ -150,6 +208,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/packages': {
       id: '/packages'
       path: '/packages'
@@ -162,6 +227,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/capabilities': {
+      id: '/capabilities'
+      path: '/capabilities'
+      fullPath: '/capabilities'
+      preLoaderRoute: typeof CapabilitiesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -185,6 +257,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PerspectivesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/work/$slug': {
+      id: '/work/$slug'
+      path: '/$slug'
+      fullPath: '/work/$slug'
+      preLoaderRoute: typeof WorkSlugRouteImport
+      parentRoute: typeof WorkRoute
+    }
     '/perspectives/$slug': {
       id: '/perspectives/$slug'
       path: '/perspectives/$slug'
@@ -195,16 +274,39 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface WorkRouteChildren {
+  WorkSlugRoute: typeof WorkSlugRoute
+}
+
+const WorkRouteChildren: WorkRouteChildren = {
+  WorkSlugRoute: WorkSlugRoute,
+}
+
+const WorkRouteWithChildren = WorkRoute._addFileChildren(WorkRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  CapabilitiesRoute: CapabilitiesRoute,
   ContactRoute: ContactRoute,
   PackagesRoute: PackagesRoute,
+  PrivacyRoute: PrivacyRoute,
   ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  WorkRoute: WorkRouteWithChildren,
   PerspectivesSlugRoute: PerspectivesSlugRoute,
   PerspectivesIndexRoute: PerspectivesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
