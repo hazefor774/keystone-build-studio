@@ -58,7 +58,7 @@ const services = [
       "Prisma SD-WAN architecture and migration",
       "Segmentation and rule-base cleanup",
     ],
-    example: "Example: PA-450 HA pair branch cutover with zero downtime.",
+    example: "Example: Palo Alto HA pair branch cutover with zero downtime.",
   },
   {
     id: "automation",

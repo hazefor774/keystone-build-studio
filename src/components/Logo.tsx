@@ -75,20 +75,57 @@ export function Logo({
 /**
  * The A-arch mark on its own — two angled bars meeting at the crown.
  * Use everywhere the brand needs a glyph (favicon, nav, footer, watermark).
+ *
+ * When `animated`, the two strokes draw in on mount via framer-motion. The
+ * fill is added on completion so the static state is always the solid mark.
  */
+import { motion } from "framer-motion";
+
 export function ArchMark({
   className = "",
   variant = "default",
+  animated = false,
 }: {
   className?: string;
   variant?: Variant;
+  animated?: boolean;
 }) {
   const left = variant === "reversed" ? "#5CC6CD" : "#0E8A94";
   const right = variant === "reversed" ? "#7FD49A" : "#3AAE5F";
+  if (!animated) {
+    return (
+      <svg viewBox="0 0 64 56" className={className} aria-hidden="true">
+        <path d="M6 50 L30 8 L24 8 L0 50 Z" fill={left} />
+        <path d="M58 50 L34 8 L40 8 L64 50 Z" fill={right} />
+      </svg>
+    );
+  }
   return (
     <svg viewBox="0 0 64 56" className={className} aria-hidden="true">
-      <path d="M6 50 L30 8 L24 8 L0 50 Z" fill={left} />
-      <path d="M58 50 L34 8 L40 8 L64 50 Z" fill={right} />
+      <motion.path
+        d="M6 50 L30 8 L24 8 L0 50 Z"
+        fill={left}
+        stroke={left}
+        strokeWidth={1}
+        initial={{ pathLength: 0, fillOpacity: 0 }}
+        animate={{ pathLength: 1, fillOpacity: 1 }}
+        transition={{
+          pathLength: { duration: 0.9, ease: [0.2, 0.7, 0.2, 1] },
+          fillOpacity: { duration: 0.4, delay: 0.7 },
+        }}
+      />
+      <motion.path
+        d="M58 50 L34 8 L40 8 L64 50 Z"
+        fill={right}
+        stroke={right}
+        strokeWidth={1}
+        initial={{ pathLength: 0, fillOpacity: 0 }}
+        animate={{ pathLength: 1, fillOpacity: 1 }}
+        transition={{
+          pathLength: { duration: 0.9, ease: [0.2, 0.7, 0.2, 1], delay: 0.15 },
+          fillOpacity: { duration: 0.4, delay: 0.85 },
+        }}
+      />
     </svg>
   );
 }
