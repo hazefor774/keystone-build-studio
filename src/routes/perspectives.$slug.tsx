@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Kicker } from "@/components/Kicker";
-import { KeystoneGlyph } from "@/components/KeystoneMonogram";
+import { ArchMark } from "@/components/Logo";
 import { getRequestOrigin } from "@/lib/origin.functions";
 import {
   getPerspective,
@@ -190,8 +190,8 @@ function PerspectiveDetail() {
         </div>
 
         {/* Sign-off */}
-        <div className="mt-20 flex items-center justify-center">
-          <KeystoneGlyph className="h-8 w-8 text-ink-soft/60" />
+        <div className="mt-20 flex items-center justify-center opacity-60">
+          <ArchMark className="h-6 w-auto" />
         </div>
       </div>
 
