@@ -6,6 +6,7 @@ import { Kicker } from "@/components/Kicker";
 import { ArchMark, ArchOutline } from "@/components/Logo";
 import { caseStudies } from "@/lib/case-studies";
 import { formatDateLong } from "@/lib/firm-config";
+import { Reveal } from "@/components/Reveal";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -51,18 +52,18 @@ function Home() {
         <div className="relative mx-auto grid max-w-7xl gap-16 px-8 pb-32 pt-28 sm:pt-36 lg:grid-cols-[1.3fr_1fr] lg:items-center lg:gap-24">
           <div>
             <div className="reveal reveal-1">
-              <p className="font-mono-label text-[10px] text-bone/70">
+              <p className="font-mono-label text-[10px] text-[var(--on-teal-soft)]">
                 Accepting Q3 engagements · Southern California
               </p>
             </div>
             <h1
-              className="reveal reveal-2 mt-10 max-w-[20ch] text-[clamp(2.5rem,6.4vw,5.5rem)] font-medium leading-[1.04] tracking-tight text-[#F2EFE8]"
+              className="reveal reveal-2 mt-10 max-w-[20ch] text-[clamp(2.5rem,6.4vw,5.5rem)] font-medium leading-[1.04] tracking-tight text-[var(--on-teal)]"
               style={{ fontFamily: "var(--font-display)", fontVariationSettings: '"opsz" 72' }}
             >
               Senior network and security architecture for organizations that can&rsquo;t
-              <span className="italic text-bone"> afford to get it wrong.</span>
+              <span className="italic text-[var(--on-teal-emph)]"> afford to get it wrong.</span>
             </h1>
-            <p className="reveal reveal-3 mt-10 max-w-[56ch] text-lg leading-relaxed text-bone/75">
+            <p className="reveal reveal-3 mt-10 max-w-[56ch] text-lg leading-relaxed text-[var(--on-teal-soft)]">
               A boutique advisory practice. Fixed-scope audits, implementation sprints, and
               ongoing architecture review — delivered by our principal engineer. No juniors
               learning on your network.
@@ -71,7 +72,7 @@ function Home() {
               <Link to="/contact" className="btn-primary">
                 Book a scoping call <ArrowRight className="h-3.5 w-3.5" />
               </Link>
-              <Link to="/packages" className="text-sm uppercase tracking-[0.16em] text-bone/80 hover:text-white">
+              <Link to="/packages" className="text-sm uppercase tracking-[0.16em] text-[var(--on-teal)] hover:text-white">
                 View engagements →
               </Link>
             </div>
@@ -88,7 +89,7 @@ function Home() {
       </section>
 
       {/* Proof band — oversized numbers, hairline separated */}
-      <section className="border-b border-[var(--hair)] bg-paper">
+      <Reveal as="section" className="border-b border-[var(--hair)] bg-paper">
         <div className="mx-auto max-w-7xl px-8 py-20">
           <Kicker index="01" label="In the field" />
           <div className="mt-12 grid gap-px bg-[var(--hair)] sm:grid-cols-2 lg:grid-cols-4">
@@ -105,14 +106,14 @@ function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </Reveal>
 
       {/* Principal statement — deep teal anchor, anonymous */}
-      <section className="anchor-deep relative">
+      <Reveal as="section" className="anchor-deep relative">
         <div className="mx-auto max-w-5xl px-8 py-32 sm:py-40">
-          <p className="font-mono-label text-[10px] text-bone/60">02 — A note from our principal engineer</p>
+          <p className="font-mono-label text-[10px] text-[var(--on-teal-soft)]">02 — A note from our principal engineer</p>
           <blockquote
-            className="mt-10 text-[clamp(1.75rem,3.4vw,2.875rem)] font-medium leading-[1.2] tracking-tight text-[#F2EFE8]"
+            className="mt-10 text-[clamp(1.75rem,3.4vw,2.875rem)] font-medium leading-[1.2] tracking-tight text-[var(--on-teal)]"
             style={{ fontFamily: "var(--font-display)" }}
           >
             &ldquo;Eighteen years on the production-cutover side of the network teaches you one
@@ -122,15 +123,15 @@ function Home() {
           </blockquote>
           <div className="mt-12 flex items-center gap-6">
             <div className="h-px w-10 bg-green/80" />
-            <p className="font-mono-label text-[10px] text-bone/70">
+            <p className="font-mono-label text-[10px] text-[var(--on-teal-soft)]">
               Our Principal Engineer · Herman Stone INC
             </p>
           </div>
         </div>
-      </section>
+      </Reveal>
 
       {/* Capabilities — editorial spec rows */}
-      <section>
+      <Reveal as="section">
         <div className="mx-auto max-w-7xl px-8 py-28">
           <div className="flex flex-wrap items-end justify-between gap-8 border-b border-[var(--hair)] pb-10">
             <div className="max-w-2xl">
@@ -170,10 +171,10 @@ function Home() {
             ))}
           </ul>
         </div>
-      </section>
+      </Reveal>
 
       {/* Engagement model — three columns, generous air */}
-      <section className="bg-paper">
+      <Reveal as="section" className="bg-paper">
         <div className="mx-auto max-w-7xl px-8 py-28">
           <Kicker index="04" label="Engagement model" />
           <h2
@@ -211,10 +212,10 @@ function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </Reveal>
 
       {/* Client profile — restrained list */}
-      <section>
+      <Reveal as="section">
         <div className="mx-auto max-w-7xl px-8 py-28">
           <div className="grid gap-16 lg:grid-cols-[1fr_1.4fr] lg:gap-24">
             <div>
@@ -239,11 +240,11 @@ function Home() {
             </ul>
           </div>
         </div>
-      </section>
+      </Reveal>
 
       {/* Case study teaser — single featured */}
       {caseStudies[0] && (
-        <section className="border-y border-[var(--hair)] bg-paper-2">
+        <Reveal as="section" className="border-y border-[var(--hair)] bg-paper-2">
           <div className="mx-auto max-w-7xl px-8 py-28">
             <div className="grid gap-16 lg:grid-cols-[1fr_1.6fr] lg:gap-24">
               <div>
@@ -285,15 +286,15 @@ function Home() {
               </Link>
             </div>
           </div>
-        </section>
+        </Reveal>
       )}
 
       {/* Credentials strip — quiet */}
-      <section>
+      <Reveal as="section">
         <div className="mx-auto max-w-7xl px-8 py-16">
           <TrustBadges />
         </div>
-      </section>
+      </Reveal>
 
       <CTABand
         kicker="Engage"
