@@ -299,33 +299,53 @@
 .btn-ghost:hover::after { transform: scaleX(1); }
 .btn-ghost:hover { color: var(--teal-deep); }
 
-/* Stagger reveal animations */
-@keyframes rise-in {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.reveal { animation: rise-in 800ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
-.reveal-1 { animation-delay: 80ms; }
-.reveal-2 { animation-delay: 180ms; }
-.reveal-3 { animation-delay: 280ms; }
-.reveal-4 { animation-delay: 380ms; }
-.reveal-5 { animation-delay: 480ms; }
-.reveal-6 { animation-delay: 580ms; }
+/* Reveal mechanics now live in framer-motion (see src/components/Reveal.tsx).
+   No CSS opacity:0 lock — content is always rendered. */
 
-/* Scroll-triggered reveal: hidden until JS adds .is-visible (see useInViewOnce). */
-.reveal-on-view {
-  opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 700ms cubic-bezier(0.2, 0.7, 0.2, 1),
-              transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1);
-  will-change: opacity, transform;
+/* Hairline divider that wipes in from the left when its parent reveal fires.
+   Pure CSS so it never gates content visibility. */
+.divider-wipe {
+  display: block;
+  height: 1px;
+  background: var(--hair);
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: divider-wipe 500ms cubic-bezier(0.2, 0.7, 0.2, 1) 100ms forwards;
 }
-.reveal-on-view.is-visible {
-  opacity: 1;
-  transform: translateY(0);
+@keyframes divider-wipe {
+  to { transform: scaleX(1); }
+}
+
+/* Hover accent rule for capability/engagement rows */
+.row-accent {
+  position: relative;
+}
+.row-accent::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -1px;
+  height: 1px; width: 100%;
+  background: var(--teal);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 350ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.row-accent:hover::after { transform: scaleX(1); }
+
+/* Marquee — slow horizontal drift, paused on hover */
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee-scroll 50s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
 }
 @media (prefers-reduced-motion: reduce) {
-  .reveal-on-view { opacity: 1; transform: none; transition: none; }
+  .marquee-track { animation: none; }
+  .divider-wipe { animation: none; transform: scaleX(1); }
 }
 
 /* SVG topology animations */
@@ -339,7 +359,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal, .topo-line, .status-dot, .btn-primary svg, .btn-primary:hover {
+  .topo-line, .status-dot, .btn-primary svg, .btn-primary:hover {
     animation: none !important;
     transition: none !important;
   }
