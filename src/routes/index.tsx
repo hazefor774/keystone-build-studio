@@ -1,12 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { TrustBadges } from "@/components/TrustBadges";
 import { CTABand } from "@/components/CTABand";
 import { Kicker } from "@/components/Kicker";
 import { ArchMark, ArchOutline } from "@/components/Logo";
 import { caseStudies } from "@/lib/case-studies";
 import { formatDateLong } from "@/lib/firm-config";
-import { Reveal } from "@/components/Reveal";
+import { Reveal, RevealItem } from "@/components/Reveal";
+import { CountUp } from "@/components/CountUp";
+import { Marquee } from "@/components/Marquee";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -39,74 +42,113 @@ const proofs = [
 
 const sectors = ["Healthcare", "Enterprise IT", "Public Sector", "MSPs", "Fintech", "AI-enabled SaaS"];
 
+const heroEase = [0.2, 0.7, 0.2, 1] as const;
+const heroRise = (delay: number) => ({
+  initial: { opacity: 0, y: 24 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.7, ease: heroEase, delay },
+});
+
+const marqueeItems = [
+  "Cisco",
+  "Palo Alto",
+  "Prisma",
+  "SD-WAN",
+  "ISE",
+  "Network Automation",
+  "Cloud Security",
+];
+
 function Home() {
+  const { scrollY } = useScroll();
+  const watermarkY = useTransform(scrollY, [0, 600], [0, 40]);
   return (
     <>
       {/* Hero — left-weighted editorial statement */}
       <section className="anchor-deep relative overflow-hidden">
-        {/* Oversized arch watermark bleeding off the edge */}
-        <ArchOutline
-          className="pointer-events-none absolute -right-32 -top-16 h-[680px] w-auto text-bone opacity-[0.07]"
-          strokeWidth={0.4}
-        />
+        {/* Oversized arch watermark — drifts on scroll */}
+        <motion.div
+          style={{ y: watermarkY }}
+          className="pointer-events-none absolute -right-32 -top-16"
+        >
+          <ArchOutline
+            className="h-[680px] w-auto text-bone opacity-[0.07]"
+            strokeWidth={0.4}
+          />
+        </motion.div>
         <div className="relative mx-auto grid max-w-7xl gap-16 px-8 pb-32 pt-28 sm:pt-36 lg:grid-cols-[1.3fr_1fr] lg:items-center lg:gap-24">
           <div>
-            <div className="reveal reveal-1">
-              <p className="font-mono-label text-[10px] text-[var(--on-teal-soft)]">
-                Accepting Q3 engagements · Southern California
-              </p>
-            </div>
-            <h1
-              className="reveal reveal-2 mt-10 max-w-[20ch] text-[clamp(2.5rem,6.4vw,5.5rem)] font-medium leading-[1.04] tracking-tight text-[var(--on-teal)]"
+            <motion.p
+              {...heroRise(0.05)}
+              className="font-mono-label text-[10px] text-[var(--on-teal-soft)]"
+            >
+              Accepting Q3 engagements · Southern California
+            </motion.p>
+            <motion.h1
+              {...heroRise(0.18)}
+              className="mt-10 max-w-[20ch] text-[clamp(2.5rem,6.4vw,5.5rem)] font-medium leading-[1.04] tracking-tight text-[var(--on-teal)]"
               style={{ fontFamily: "var(--font-display)", fontVariationSettings: '"opsz" 72' }}
             >
               Senior network and security architecture for organizations that can&rsquo;t
               <span className="italic text-[var(--on-teal-emph)]"> afford to get it wrong.</span>
-            </h1>
-            <p className="reveal reveal-3 mt-10 max-w-[56ch] text-lg leading-relaxed text-[var(--on-teal-soft)]">
+            </motion.h1>
+            <motion.p
+              {...heroRise(0.32)}
+              className="mt-10 max-w-[56ch] text-lg leading-relaxed text-[var(--on-teal-soft)]"
+            >
               A boutique advisory practice. Fixed-scope audits, implementation sprints, and
               ongoing architecture review — delivered by our principal engineer. No juniors
               learning on your network.
-            </p>
-            <div className="reveal reveal-4 mt-12 flex flex-wrap items-center gap-10">
+            </motion.p>
+            <motion.div
+              {...heroRise(0.44)}
+              className="mt-12 flex flex-wrap items-center gap-10"
+            >
               <Link to="/contact" className="btn-primary">
                 Book a scoping call <ArrowRight className="h-3.5 w-3.5" />
               </Link>
               <Link to="/packages" className="text-sm uppercase tracking-[0.16em] text-[var(--on-teal)] hover:text-white">
                 View engagements →
               </Link>
-            </div>
+            </motion.div>
           </div>
 
           {/* Arch mark — the hero centerpiece */}
-          <div className="reveal reveal-3 relative flex items-center justify-center">
+          <motion.div
+            {...heroRise(0.25)}
+            className="relative flex items-center justify-center"
+          >
             <ArchMark
               className="h-auto w-full max-w-[380px]"
               variant="reversed"
+              animated
             />
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Proof band — oversized numbers, hairline separated */}
-      <Reveal as="section" className="border-b border-[var(--hair)] bg-paper">
+      <Reveal as="section" className="border-b border-[var(--hair)] bg-paper" stagger>
         <div className="mx-auto max-w-7xl px-8 py-20">
-          <Kicker index="01" label="In the field" />
+          <RevealItem><Kicker index="01" label="In the field" /></RevealItem>
           <div className="mt-12 grid gap-px bg-[var(--hair)] sm:grid-cols-2 lg:grid-cols-4">
             {proofs.map((p) => (
-              <div key={p.label} className="bg-paper px-6 py-10">
+              <RevealItem key={p.label} className="bg-paper px-6 py-10">
                 <p
                   className="text-[clamp(3rem,5vw,4.5rem)] font-medium leading-none text-ink"
                   style={{ fontFamily: "var(--font-display)" }}
                 >
-                  {p.num}
+                  <CountUp value={p.num} />
                 </p>
                 <p className="mt-5 max-w-[20ch] text-sm leading-relaxed text-ink-soft">{p.label}</p>
-              </div>
+              </RevealItem>
             ))}
           </div>
         </div>
       </Reveal>
+
+      {/* Ambient marquee — slow drift between sections */}
+      <Marquee items={marqueeItems} />
 
       {/* Principal statement — deep teal anchor, anonymous */}
       <Reveal as="section" className="anchor-deep relative">
@@ -131,9 +173,9 @@ function Home() {
       </Reveal>
 
       {/* Capabilities — editorial spec rows */}
-      <Reveal as="section">
+      <Reveal as="section" stagger>
         <div className="mx-auto max-w-7xl px-8 py-28">
-          <div className="flex flex-wrap items-end justify-between gap-8 border-b border-[var(--hair)] pb-10">
+          <RevealItem className="flex flex-wrap items-end justify-between gap-8 border-b border-[var(--hair)] pb-10">
             <div className="max-w-2xl">
               <Kicker index="03" label="Capabilities" />
               <h2
@@ -146,14 +188,14 @@ function Home() {
             <Link to="/services" className="link-underline text-sm uppercase tracking-[0.16em]">
               View all services
             </Link>
-          </div>
+          </RevealItem>
 
           <ul className="mt-4">
             {capabilities.map((c) => (
-              <li key={c.n}>
+              <RevealItem key={c.n} as="li">
                 <Link
                   to="/services"
-                  className="group grid grid-cols-[auto_1fr_auto] items-baseline gap-10 border-b border-[var(--hair)] py-10 transition hover:bg-paper/60"
+                  className="row-accent group grid grid-cols-[auto_1fr_auto] items-baseline gap-10 border-b border-[var(--hair)] py-10 transition hover:-translate-y-0.5 hover:bg-paper/60"
                 >
                   <span className="font-mono-label text-[11px] text-ink-soft">{c.n}</span>
                   <div className="grid gap-3 lg:grid-cols-[1fr_1.4fr] lg:gap-12">
@@ -165,27 +207,29 @@ function Home() {
                     </h3>
                     <p className="max-w-[60ch] text-base leading-relaxed text-ink-soft">{c.desc}</p>
                   </div>
-                  <ArrowRight className="h-4 w-4 text-ink-soft transition group-hover:translate-x-1 group-hover:text-ink" />
+                  <ArrowRight className="h-4 w-4 text-ink-soft transition group-hover:translate-x-2 group-hover:text-ink" />
                 </Link>
-              </li>
+              </RevealItem>
             ))}
           </ul>
         </div>
       </Reveal>
 
       {/* Engagement model — three columns, generous air */}
-      <Reveal as="section" className="bg-paper">
+      <Reveal as="section" className="bg-paper" stagger>
         <div className="mx-auto max-w-7xl px-8 py-28">
-          <Kicker index="04" label="Engagement model" />
-          <h2
-            className="mt-5 max-w-3xl text-[clamp(2rem,4vw,3.25rem)] font-medium leading-[1.05] tracking-tight"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            Audit. Sprint. Retainer.
-          </h2>
-          <p className="mt-5 max-w-2xl text-lg text-ink-soft">
-            Fixed scope first. Implementation next. Ongoing advisory as trust compounds.
-          </p>
+          <RevealItem>
+            <Kicker index="04" label="Engagement model" />
+            <h2
+              className="mt-5 max-w-3xl text-[clamp(2rem,4vw,3.25rem)] font-medium leading-[1.05] tracking-tight"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              Audit. Sprint. Retainer.
+            </h2>
+            <p className="mt-5 max-w-2xl text-lg text-ink-soft">
+              Fixed scope first. Implementation next. Ongoing advisory as trust compounds.
+            </p>
+          </RevealItem>
 
           <div className="mt-16 grid gap-px bg-[var(--hair)] md:grid-cols-3">
             {[
@@ -193,7 +237,7 @@ function Home() {
               { n: "II.", title: "Sprint", desc: "Implement the fix — segmentation, access, logging, cloud, AI guardrails.", meta: "4 – 8 weeks" },
               { n: "III.", title: "Retainer", desc: "Architecture review, change advisory, and audit-grade evidence support.", meta: "Monthly" },
             ].map((s) => (
-              <div key={s.n} className="bg-paper px-8 py-12">
+              <RevealItem key={s.n} className="row-accent bg-paper px-8 py-12 transition hover:-translate-y-0.5">
                 <span
                   className="text-3xl text-ink-soft"
                   style={{ fontFamily: "var(--font-display)", fontStyle: "italic" }}
@@ -208,17 +252,17 @@ function Home() {
                 </h3>
                 <p className="mt-5 max-w-xs text-base leading-relaxed text-ink-soft">{s.desc}</p>
                 <p className="mt-8 font-mono-label text-[10px] text-ink-soft">{s.meta}</p>
-              </div>
+              </RevealItem>
             ))}
           </div>
         </div>
       </Reveal>
 
       {/* Client profile — restrained list */}
-      <Reveal as="section">
+      <Reveal as="section" stagger>
         <div className="mx-auto max-w-7xl px-8 py-28">
           <div className="grid gap-16 lg:grid-cols-[1fr_1.4fr] lg:gap-24">
-            <div>
+            <RevealItem>
               <Kicker index="05" label="Client profile" />
               <h2
                 className="mt-5 text-[clamp(2rem,4vw,3.25rem)] font-medium leading-[1.05] tracking-tight"
@@ -226,16 +270,16 @@ function Home() {
               >
                 For teams that can't afford a bad cutover.
               </h2>
-            </div>
+            </RevealItem>
             <ul className="grid gap-px bg-[var(--hair)] sm:grid-cols-2">
               {sectors.map((s) => (
-                <li
+                <RevealItem
                   key={s}
+                  as="li"
                   className="bg-bone py-6 pl-1 text-2xl font-medium tracking-tight text-ink"
-                  style={{ fontFamily: "var(--font-display)" }}
                 >
-                  {s}
-                </li>
+                  <span style={{ fontFamily: "var(--font-display)" }}>{s}</span>
+                </RevealItem>
               ))}
             </ul>
           </div>
