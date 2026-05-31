@@ -12,6 +12,7 @@ import appCss from "../styles.css?url";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Toaster } from "@/components/ui/sonner";
+import { firm } from "@/lib/firm-config";
 
 function NotFoundComponent() {
   return (
@@ -99,7 +100,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "@type": "Organization",
           name: "Herman Stone INC",
           areaServed: "Southern California",
-          email: "hello@hermanstone.com",
+          email: firm.email,
           foundingDate: "2024",
         }),
       },
@@ -131,7 +132,6 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="relative flex min-h-dvh flex-col">
-        <div className="blueprint-bg" aria-hidden="true" />
         <SiteNav />
         <main className="flex-1">
           <Outlet />

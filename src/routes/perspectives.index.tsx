@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { Kicker } from "@/components/Kicker";
 import { perspectives, formatPerspectiveDate } from "@/lib/perspectives";
+import { firm } from "@/lib/firm-config";
 
 export const Route = createFileRoute("/perspectives/")({
   head: () => ({
@@ -110,8 +111,8 @@ function PerspectivesIndex() {
           </ul>
           <p className="mt-16 text-center text-sm text-ink-soft">
             More perspectives in the pipeline. Topic suggestions →{" "}
-            <a href="mailto:hello@hermanstone.com" className="link-underline">
-              hello@hermanstone.com
+            <a href={`mailto:${firm.email}`} className="link-underline">
+              {firm.email}
             </a>
           </p>
         </div>

@@ -1,10 +1,13 @@
 import { createFileRoute, useSearch } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { toast } from "sonner";
 import { Mail, MapPin, Calendar, ArrowRight } from "lucide-react";
 import { TrustBadges } from "@/components/TrustBadges";
 import { Kicker, StatusDot } from "@/components/Kicker";
+import { firm } from "@/lib/firm-config";
+import { submitContact } from "@/lib/api/contact.functions";
 
 const searchSchema = z.object({
   pkg: z.string().optional(),
@@ -47,6 +50,13 @@ const engagementOptions = [
 
 function Contact() {
   const { pkg } = useSearch({ from: "/contact" });
+  const submit = useServerFn(submitContact);
+  const startedAtRef = useRef<number>(Date.now());
+  const [honeypot, setHoneypot] = useState("");
+  useEffect(() => {
+    // Reset on mount so the timestamp reflects the actual page view.
+    startedAtRef.current = Date.now();
+  }, []);
   const [form, setForm] = useState({
     name: "",
     company: "",
@@ -76,10 +86,25 @@ function Contact() {
     }
     setSubmitting(true);
     try {
-      // TODO: wire to Supabase or Formspree.
-      await new Promise((r) => setTimeout(r, 600));
-      toast.success("Thanks — we'll be in touch within one business day.");
-      setForm({ name: "", company: "", email: "", phone: "", pkg: "HSI-001", message: "" });
+      const res = await submit({
+        data: {
+          ...result.data,
+          phone: result.data.phone ?? "",
+          company_website: honeypot,
+          startedAt: startedAtRef.current,
+        },
+      });
+      if (res.ok) {
+        toast.success("Thanks — we'll be in touch within one business day.");
+        setForm({ name: "", company: "", email: "", phone: "", pkg: "HSI-001", message: "" });
+        setHoneypot("");
+        startedAtRef.current = Date.now();
+      } else {
+        toast.error(`Couldn't send — email us at ${firm.email}`);
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error(`Couldn't send — email us at ${firm.email}`);
     } finally {
       setSubmitting(false);
     }
@@ -110,6 +135,19 @@ function Contact() {
         <div className="mx-auto max-w-7xl px-8 py-24">
           <div className="grid gap-20 lg:grid-cols-[1.2fr_1fr]">
             <form onSubmit={onSubmit} data-form="contact-form">
+              {/* Honeypot — visually hidden from humans, harvested by bots. */}
+              <div aria-hidden="true" style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }}>
+                <label>
+                  Company website
+                  <input
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                  />
+                </label>
+              </div>
               <Kicker index="01" label="Send a note" />
               <h2
                 className="mt-5 text-3xl font-medium tracking-tight sm:text-4xl"
@@ -202,27 +240,47 @@ function Contact() {
                 We&rsquo;ll discuss your environment, the highest-risk areas, and which
                 engagement fits.
               </p>
-              <div className="mt-8 overflow-hidden border border-[var(--hair)] bg-paper">
-                <iframe
-                  src="https://calendly.com/hermanstone/intro"
-                  title="Book an intro call"
-                  className="h-[620px] w-full"
-                  loading="lazy"
-                />
-              </div>
-              <p className="mt-4 text-sm text-ink-soft">
-                Trouble seeing the calendar? Email{" "}
-                <a href="mailto:hello@hermanstone.com" className="link-underline">
-                  hello@hermanstone.com
-                </a>{" "}
-                directly.
-              </p>
+              {firm.calendlyUrl ? (
+                <>
+                  <div className="mt-8 overflow-hidden border border-[var(--hair)] bg-paper">
+                    <iframe
+                      src={firm.calendlyUrl}
+                      title="Book an intro call"
+                      className="h-[620px] w-full"
+                      loading="lazy"
+                    />
+                  </div>
+                  <p className="mt-4 text-sm text-ink-soft">
+                    Trouble seeing the calendar? Email{" "}
+                    <a href={`mailto:${firm.email}`} className="link-underline">
+                      {firm.email}
+                    </a>{" "}
+                    directly.
+                  </p>
+                </>
+              ) : (
+                <div className="mt-8 border border-[var(--hair)] bg-paper p-10">
+                  <p
+                    className="text-xl font-medium leading-snug tracking-tight text-ink"
+                    style={{ fontFamily: "var(--font-display)" }}
+                  >
+                    Booking opens shortly.
+                  </p>
+                  <p className="mt-4 text-base leading-relaxed text-ink-soft">
+                    Email{" "}
+                    <a href={`mailto:${firm.email}`} className="link-underline">
+                      {firm.email}
+                    </a>{" "}
+                    to grab a slot — we&rsquo;ll reply within one business day.
+                  </p>
+                </div>
+              )}
 
               <ul className="mt-12 space-y-4 border-t border-[var(--hair)] pt-8 text-sm">
                 <li className="flex items-center gap-3">
                   <Mail className="h-4 w-4 text-ink-soft" />
-                  <a className="link-underline" href="mailto:hello@hermanstone.com">
-                    hello@hermanstone.com
+                  <a className="link-underline" href={`mailto:${firm.email}`}>
+                    {firm.email}
                   </a>
                 </li>
                 <li className="flex items-center gap-3 text-ink-soft">

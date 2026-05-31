@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, MapPin } from "lucide-react";
 import logo from "@/assets/herman-stone-logo.png";
+import { firm } from "@/lib/firm-config";
 
 export function SiteFooter() {
   return (
@@ -39,8 +40,8 @@ export function SiteFooter() {
           <ul className="mt-5 space-y-3 text-sm text-ink">
             <li className="flex items-center gap-2">
               <Mail className="h-3.5 w-3.5 text-ink-soft" />
-              <a className="link-underline" href="mailto:hello@hermanstone.com">
-                hello@hermanstone.com
+              <a className="link-underline" href={`mailto:${firm.email}`}>
+                {firm.email}
               </a>
             </li>
             <li className="flex items-center gap-2 text-ink-soft">
@@ -59,8 +60,8 @@ export function SiteFooter() {
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-8 py-6 font-mono-label text-[10px] text-ink-soft sm:flex-row">
           <span>© Herman Stone INC · 2024 · California Corporation</span>
           <div className="flex items-center gap-6">
-            <a href="#" className="hover:text-ink">Privacy</a>
-            <a href="#" className="hover:text-ink">Capabilities Statement</a>
+            <Link to="/privacy" className="hover:text-ink">Privacy</Link>
+            <Link to="/capabilities" className="hover:text-ink">Capabilities Statement</Link>
           </div>
         </div>
       </div>
