@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { TrustBadges } from "@/components/TrustBadges";
 import { Kicker } from "@/components/Kicker";
-import { KeystoneMonogram } from "@/components/KeystoneMonogram";
+import { ArchMark } from "@/components/Logo";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -51,10 +51,10 @@ function About() {
         <div className="mx-auto grid max-w-7xl gap-16 px-8 py-24 lg:grid-cols-[1fr_1.6fr] lg:gap-24">
           <div>
             <div className="aspect-[4/5] flex items-center justify-center border border-[var(--hair)] bg-paper-2 p-10">
-              <KeystoneMonogram className="h-auto w-full max-w-[320px] text-teal-deep" strokeWidth={1.1} />
+              <ArchMark className="h-auto w-full max-w-[280px]" />
             </div>
             <p className="mt-5 font-mono-label text-[10px] text-ink-soft">
-              The keystone — our recurring mark
+              The arch — our recurring mark
             </p>
           </div>
           <div>
