@@ -3,20 +3,13 @@
 @source "../src";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
-
 /*
  * Design system definition.
  *
  * The @theme inline block maps CSS custom properties to Tailwind utility
  * classes (e.g. --color-primary -> bg-primary, text-primary).
  *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ * Light-only editorial palette. See :root for the source of truth.
  */
 
 @theme inline {
@@ -65,7 +58,6 @@
   --font-mono: "Spline Sans Mono", ui-monospace, SFMono-Regular, monospace;
   --font-wordmark: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --color-teal: var(--teal);
-  --color-teal-lit: var(--teal-lit);
   --color-green: var(--green);
   --color-teal-deep: var(--teal-deep);
   --color-bone: var(--bone);
@@ -74,43 +66,30 @@
   --color-ink-soft: var(--ink-soft);
   --color-hair: var(--hair);
   --color-ink: var(--ink);
-  --color-ink-900: var(--ink-900);
-  --color-ink-800: var(--ink-800);
-  --color-ink-700: var(--ink-700);
-  --color-ink-600: var(--ink-600);
-  --color-line: var(--line);
-  --color-text: var(--text);
-  --color-muted-text: var(--muted-text);
-  --color-amber: var(--amber);
-  --color-mint: var(--mint);
-  --color-navy: var(--navy);
+  --color-link: var(--link);
+  --color-on-teal: var(--on-teal);
+  --color-on-teal-soft: var(--on-teal-soft);
+  --color-on-teal-emph: var(--on-teal-emph);
 }
 
 :root {
   --radius: 0.125rem;
-  /* Editorial Advisory — paper canvas + deep-teal anchors */
-  --paper:    #FAF9F6;   /* primary background — soft near-white */
-  --paper-2:  #F2EFE8;   /* alternate band / card surface */
+  /* Editorial Advisory — paper canvas + deep-teal anchors. WCAG AA across pairs. */
+  --paper:    #FAF9F6;   /* primary background */
+  --paper-2:  #F1EEE7;   /* alternate band / card surface — slightly warmer */
   --bone:     var(--paper);
-  --ink:      #15201F;
-  --ink-soft: #4C544F;
-  --teal:     #0E8A94;
-  --teal-deep:#0B2E30;
-  --green:    #3AAE5F;
-  --hair:     rgba(21, 32, 31, 0.12);
+  --ink:      #14201F;
+  --ink-soft: #434F4C;   /* darker than before so AA passes on paper */
+  --teal:     #0E8A94;   /* BRAND mark/structure only — not small text on paper */
+  --teal-deep:#0B2E30;   /* anchor section background */
+  --green:    #3AAE5F;   /* scalpel accent: underline, status dot, one CTA edge */
+  --link:     #0A6E76;   /* accessible teal for inline/nav links on paper */
+  --hair:     rgba(20, 32, 31, 0.12);
 
-  /* Legacy aliases (kept so older utilities/components keep compiling) */
-  --ink-900: var(--paper);
-  --ink-800: var(--paper-2);
-  --ink-700: #EAE6DC;
-  --ink-600: #D9D4C7;
-  --line: var(--hair);
-  --teal-lit: #0B6F77;
-  --text: var(--ink);
-  --muted-text: var(--ink-soft);
-  --amber: #C28A2B;
-  --navy: #0A1628;
-  --mint: #A7F3D0;
+  /* On deep-teal anchor sections */
+  --on-teal:      #EDE8DB;
+  --on-teal-soft: rgba(237, 232, 219, 0.82);
+  --on-teal-emph: #7FD3C4;  /* lightened brand teal — used at display size */
 
   --background: var(--paper);
   --foreground: var(--ink);
@@ -144,41 +123,6 @@
   --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
-}
-
-.dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
 }
 
 @layer base {
@@ -227,28 +171,13 @@
   font-weight: 500;
 }
 
-/* Subtle paper background */
-.blueprint-bg {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background-color: var(--paper);
-}
-.blueprint-bg::before {
-  content: none;
-}
-.blueprint-bg::after {
-  content: none;
-}
-
 /* Deep-teal anchor section */
 .anchor-deep {
   background: var(--teal-deep);
-  color: #ECE7DA;
+  color: var(--on-teal);
 }
-.anchor-deep h1, .anchor-deep h2, .anchor-deep h3 { color: #F2EFE8; }
-.anchor-deep .ink-soft, .anchor-deep .text-muted-foreground { color: rgba(242,239,232,0.72) !important; }
+.anchor-deep h1, .anchor-deep h2, .anchor-deep h3 { color: var(--on-teal); }
+.anchor-deep .ink-soft, .anchor-deep .text-muted-foreground { color: var(--on-teal-soft) !important; }
 
 /* Hairline divider helper */
 .hairline-t { border-top: 1px solid var(--hair); }
@@ -258,8 +187,9 @@
 .link-underline {
   position: relative;
   display: inline-block;
-  color: var(--teal-deep);
+  color: var(--link);
 }
+.anchor-deep .link-underline { color: var(--on-teal); }
 .link-underline::after {
   content: "";
   position: absolute;
@@ -381,6 +311,22 @@
 .reveal-4 { animation-delay: 380ms; }
 .reveal-5 { animation-delay: 480ms; }
 .reveal-6 { animation-delay: 580ms; }
+
+/* Scroll-triggered reveal: hidden until JS adds .is-visible (see useInViewOnce). */
+.reveal-on-view {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 700ms cubic-bezier(0.2, 0.7, 0.2, 1),
+              transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  will-change: opacity, transform;
+}
+.reveal-on-view.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-view { opacity: 1; transform: none; transition: none; }
+}
 
 /* SVG topology animations */
 @keyframes draw-line {
