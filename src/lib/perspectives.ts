@@ -16,8 +16,8 @@ export interface Perspective {
 
 export const perspectives: Perspective[] = [
   {
-    slug: "pa-450-ha-branch-cutover",
-    title: "Designing a zero-downtime PA-450 HA branch cutover",
+    slug: "firewall-ha-branch-cutover",
+    title: "Designing a zero-downtime firewall HA branch cutover",
     date: "2025-09-12",
     tag: "Palo Alto",
     readingTime: "8 min read",
@@ -26,7 +26,7 @@ export const perspectives: Perspective[] = [
     body: [
       {
         type: "p",
-        text: "Most PA-450 HA cutovers do not fail at the firewall. They fail at the seams — the upstream switch that never re-learned the MAC, the route-map that quietly drops a /24 during convergence, the management VLAN that loses its default gateway for ninety seconds while nobody is watching the right dashboard.",
+        text: "Most firewall HA cutovers do not fail at the firewall. They fail at the seams — the upstream switch that never re-learned the MAC, the route-map that quietly drops a /24 during convergence, the management VLAN that loses its default gateway for ninety seconds while nobody is watching the right dashboard.",
       },
       {
         type: "p",
