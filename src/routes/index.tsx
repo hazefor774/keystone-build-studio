@@ -3,7 +3,9 @@ import { ArrowRight } from "lucide-react";
 import { TrustBadges } from "@/components/TrustBadges";
 import { CTABand } from "@/components/CTABand";
 import { Kicker } from "@/components/Kicker";
-import { KeystoneMonogram } from "@/components/KeystoneMonogram";
+import { ArchMark, ArchOutline } from "@/components/Logo";
+import { caseStudies } from "@/lib/case-studies";
+import { formatDateLong } from "@/lib/firm-config";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -27,9 +29,10 @@ const capabilities = [
 ];
 
 const proofs = [
-  { num: "18+", label: "Years senior delivery" },
-  { num: "59", label: "Branch SD-WAN cutover, zero outage" },
-  { num: "0", label: "Unplanned production outages" },
+  // TODO(hsi-v5): confirm each metric is true and current. Soften further if needed.
+  { num: "18+", label: "Years senior network engineering" },
+  { num: "59", label: "Branch SD-WAN cutover, no user-visible downtime" },
+  { num: "0", label: "Unplanned outages across documented cutovers" },
   { num: "100%", label: "Engagements under written SOW" },
 ];
 
@@ -40,11 +43,10 @@ function Home() {
     <>
       {/* Hero — left-weighted editorial statement */}
       <section className="anchor-deep relative overflow-hidden">
-        {/* Oversized watermark monogram bleeding off the edge */}
-        <KeystoneMonogram
-          className="pointer-events-none absolute -right-24 -top-10 h-[680px] w-[680px] opacity-[0.06] text-bone"
-          color="currentColor"
-          strokeWidth={0.8}
+        {/* Oversized arch watermark bleeding off the edge */}
+        <ArchOutline
+          className="pointer-events-none absolute -right-32 -top-16 h-[680px] w-auto text-bone opacity-[0.07]"
+          strokeWidth={0.4}
         />
         <div className="relative mx-auto grid max-w-7xl gap-16 px-8 pb-32 pt-28 sm:pt-36 lg:grid-cols-[1.3fr_1fr] lg:items-center lg:gap-24">
           <div>
@@ -58,7 +60,7 @@ function Home() {
               style={{ fontFamily: "var(--font-display)", fontVariationSettings: '"opsz" 72' }}
             >
               Senior network and security architecture for organizations that can&rsquo;t
-              <span className="italic text-[#A7D9DE]"> afford to get it wrong.</span>
+              <span className="italic text-bone"> afford to get it wrong.</span>
             </h1>
             <p className="reveal reveal-3 mt-10 max-w-[56ch] text-lg leading-relaxed text-bone/75">
               A boutique advisory practice. Fixed-scope audits, implementation sprints, and
@@ -75,12 +77,11 @@ function Home() {
             </div>
           </div>
 
-          {/* Keystone monogram — the hero centerpiece */}
+          {/* Arch mark — the hero centerpiece */}
           <div className="reveal reveal-3 relative flex items-center justify-center">
-            <KeystoneMonogram
-              className="h-auto w-full max-w-[440px] text-[#A7D9DE]"
-              strokeWidth={1.1}
-              animate
+            <ArchMark
+              className="h-auto w-full max-w-[380px]"
+              variant="reversed"
             />
           </div>
         </div>
@@ -240,24 +241,52 @@ function Home() {
         </div>
       </section>
 
-      {/* Keystone interlude — section divider with monogram */}
-      <section className="border-y border-[var(--hair)] bg-paper-2">
-        <div className="mx-auto grid max-w-7xl gap-12 px-8 py-28 lg:grid-cols-[1.2fr_1fr] lg:items-center">
-          <div>
-            <Kicker index="06" label="The keystone" />
-            <p
-              className="mt-6 max-w-xl text-2xl leading-snug text-ink"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              The keystone is the wedge at the crown of an arch — the single stone that holds
-              every other in place. It is how we think about the work we do.
-            </p>
+      {/* Case study teaser — single featured */}
+      {caseStudies[0] && (
+        <section className="border-y border-[var(--hair)] bg-paper-2">
+          <div className="mx-auto max-w-7xl px-8 py-28">
+            <div className="grid gap-16 lg:grid-cols-[1fr_1.6fr] lg:gap-24">
+              <div>
+                <Kicker index="06" label="Recent work" />
+                <h2
+                  className="mt-5 text-[clamp(2rem,4vw,3rem)] font-medium leading-[1.05] tracking-tight"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  Anonymized case studies.
+                </h2>
+                <p className="mt-6 max-w-md text-base leading-relaxed text-ink-soft">
+                  Sector and shape, never names. Each study covers the situation, what was at
+                  stake, what we did, and the measured outcome.
+                </p>
+                <Link to="/work" className="link-underline mt-10 inline-flex text-sm uppercase tracking-[0.16em]">
+                  All case studies
+                </Link>
+              </div>
+              <Link
+                to="/work/$slug"
+                params={{ slug: caseStudies[0].slug }}
+                className="group block border border-[var(--hair)] bg-bone p-10 transition hover:border-ink/30"
+              >
+                <div className="flex flex-wrap items-center gap-4 font-mono-label text-[10px] text-ink-soft">
+                  <span>{caseStudies[0].sector}</span>
+                  <span>·</span>
+                  <span>{formatDateLong(caseStudies[0].date)}</span>
+                </div>
+                <h3
+                  className="mt-6 text-[clamp(1.5rem,2.4vw,2rem)] font-medium leading-[1.15] tracking-tight"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  {caseStudies[0].title}
+                </h3>
+                <p className="mt-6 text-base leading-relaxed text-ink-soft">{caseStudies[0].excerpt}</p>
+                <span className="mt-8 inline-flex items-center gap-2 text-sm uppercase tracking-[0.16em] text-ink transition group-hover:gap-3">
+                  Read the case study <ArrowRight className="h-3.5 w-3.5" />
+                </span>
+              </Link>
+            </div>
           </div>
-          <div className="flex items-center justify-center">
-            <KeystoneMonogram className="h-auto w-full max-w-[360px] text-teal-deep" strokeWidth={1} />
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Credentials strip — quiet */}
       <section>
