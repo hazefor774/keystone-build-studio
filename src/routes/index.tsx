@@ -82,23 +82,23 @@ function Home() {
               {...heroRise(0.05)}
               className="font-mono-label text-[10px] text-[var(--on-teal-soft)]"
             >
-              Accepting Q3 engagements · Southern California
+              Network &amp; security advisory · Southern California
             </motion.p>
             <motion.h1
               {...heroRise(0.18)}
               className="mt-10 max-w-[20ch] text-[clamp(2.5rem,6.4vw,5.5rem)] font-medium leading-[1.04] tracking-tight text-[var(--on-teal)]"
               style={{ fontFamily: "var(--font-display)", fontVariationSettings: '"opsz" 72' }}
             >
-              Senior network and security architecture for organizations that can&rsquo;t
-              <span className="italic text-[var(--on-teal-emph)]"> afford to get it wrong.</span>
+              Senior network and security architecture for organizations that
+              <span className="italic text-[var(--on-teal-emph)]"> can&rsquo;t afford to get it wrong.</span>
             </motion.h1>
             <motion.p
               {...heroRise(0.32)}
               className="mt-10 max-w-[56ch] text-lg leading-relaxed text-[var(--on-teal-soft)]"
             >
-              A boutique advisory practice. Fixed-scope audits, implementation sprints, and
-              ongoing architecture review — delivered by our principal engineer. No juniors
-              learning on your network.
+              A boutique advisory practice serving healthcare, enterprise IT, and public-sector
+              teams. Fixed-scope audits, implementation sprints, and ongoing architecture review
+              &mdash; delivered by our principal engineer. No juniors learning on your network.
             </motion.p>
             <motion.div
               {...heroRise(0.44)}
