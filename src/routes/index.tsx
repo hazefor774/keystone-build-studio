@@ -35,7 +35,7 @@ const capabilities = [
 const proofs = [
   // TODO(hsi-v5): confirm each metric is true and current. Soften further if needed.
   { num: "18+", label: "Years senior network engineering" },
-  { num: "59", label: "Branch SD-WAN cutover, no user-visible downtime" },
+  { num: "59", label: "Branch SD-WAN program in delivery \u2014 zero user-visible downtime to date" },
   { num: "0", label: "Unplanned outages across documented cutovers" },
   { num: "100%", label: "Engagements under written SOW" },
 ];

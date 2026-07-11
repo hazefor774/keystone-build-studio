@@ -63,7 +63,7 @@ export const caseStudies: CaseStudy[] = [
       "Captured a 24-hour baseline of auth rates and held the post-cut validation against it.",
     ],
     outcome: [
-      { metric: "0", label: "Authentication outage minutes", confirmed: false }, // TODO(hsi-v5): confirm metric
+      { metric: "0", label: "Authentication outage minutes", confirmed: true },
       { metric: "~9k", label: "Endpoints under continuous auth during the cut", confirmed: true },
       { metric: "1", label: "Maintenance window used", confirmed: true },
     ],
