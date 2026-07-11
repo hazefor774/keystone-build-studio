@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { Mail, MapPin } from "lucide-react";
-import logo from "@/assets/herman-stone-logo.png";
+import { Mail, MapPin, Phone } from "lucide-react";
+import { Logo } from "@/components/Logo";
 import { firm } from "@/lib/firm-config";
 
 export function SiteFooter() {
@@ -8,7 +8,7 @@ export function SiteFooter() {
     <footer className="relative border-t border-[var(--hair)] bg-bone">
       <div className="mx-auto grid max-w-7xl gap-12 px-8 py-20 md:grid-cols-[2fr_1fr_1fr]">
         <div className="max-w-md">
-          <img src={logo} alt="Herman Stone INC" className="h-12 w-auto" />
+          <Logo stacked className="mb-1" />
           <p
             className="mt-6 text-lg leading-relaxed text-ink-soft"
             style={{ fontFamily: "var(--font-display)" }}
@@ -45,8 +45,12 @@ export function SiteFooter() {
               </a>
             </li>
             <li className="flex items-center gap-2 text-ink-soft">
-              <MapPin className="h-3.5 w-3.5" />
-              Serving Southern California
+              <Phone className="h-3.5 w-3.5" />
+              <a className="link-underline" href="tel:+12132929002">{firm.phone}</a>
+            </li>
+            <li className="flex items-start gap-2 text-ink-soft">
+              <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0" />
+              <span>{firm.address}</span>
             </li>
           </ul>
           <div className="mt-8 space-y-1.5 font-mono-label text-[10px] text-ink-soft">
@@ -58,7 +62,9 @@ export function SiteFooter() {
       </div>
       <div className="border-t border-[var(--hair)]">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-8 py-6 font-mono-label text-[10px] text-ink-soft sm:flex-row">
-          <span>© Herman Stone INC · 2024 · California Corporation</span>
+          <span>
+            © Herman Stone INC · California Corporation · {firm.address} · Tel {firm.phone}
+          </span>
           <div className="flex items-center gap-6">
             <Link to="/privacy" className="hover:text-ink">Privacy</Link>
             <Link to="/capabilities" className="hover:text-ink">Capabilities Statement</Link>
