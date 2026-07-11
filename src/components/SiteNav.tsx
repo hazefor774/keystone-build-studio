@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X, ArrowRight } from "lucide-react";
-import logo from "@/assets/herman-stone-logo.png";
+import { Logo } from "@/components/Logo";
 
 const links = [
   { to: "/", label: "Home" },
@@ -19,7 +19,7 @@ export function SiteNav() {
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-8">
         {/* Wordmark */}
         <Link to="/" aria-label="Herman Stone INC — Home" className="group flex items-center">
-          <img src={logo} alt="Herman Stone INC" className="h-12 w-auto" />
+          <Logo className="h-10" />
         </Link>
 
         {/* Desktop nav */}

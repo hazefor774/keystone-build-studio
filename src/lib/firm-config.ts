@@ -9,7 +9,9 @@ export const firm = {
   legalName: "Herman Stone INC",
   entity: "California Corporation",
   foundedYear: 2024,
-  email: "hello@hermanstone.com",
+  email: "ops@hermanstone.com",
+  phone: "(213) 292-9002",
+  address: "611 Wilshire Blvd, Suite 900 #1012, Los Angeles, CA 90017",
   region: "Southern California",
   // TODO(hsi-v5): SAM.gov UEI and CAGE — fill once issued
   uei: null as string | null,
