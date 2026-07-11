@@ -101,7 +101,28 @@ function Packages() {
             Every engagement runs under a written SOW. Scope and timeline are confirmed on a
             thirty-minute scoping call; a written proposal follows.
           </p>
-          <div className="mt-14 border-t border-[var(--hair)] pt-8">
+          {/* Scannable engagement index — jump-list at top */}
+          <div className="mt-16 grid gap-px border-t border-b border-[var(--hair)] bg-[var(--hair)] sm:grid-cols-2 lg:grid-cols-4">
+            {engagements.map((p) => (
+              <a
+                key={p.code}
+                href={`#${p.code}`}
+                className="group flex flex-col justify-between gap-6 bg-paper px-5 py-6 transition hover:bg-paper-2"
+              >
+                <span className="font-mono-label text-[10px] text-ink-soft">{p.code}</span>
+                <span
+                  className="text-base font-medium leading-snug tracking-tight text-ink"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  {p.name}
+                </span>
+                <span className="font-mono-label text-[10px] text-ink-soft">
+                  {p.duration}
+                </span>
+              </a>
+            ))}
+          </div>
+          <div className="mt-10">
             <TrustBadges />
           </div>
         </div>
@@ -111,7 +132,7 @@ function Packages() {
         <div className="mx-auto max-w-7xl px-8 py-8">
           <ul>
             {engagements.map((p) => (
-              <li key={p.code}>
+              <li key={p.code} id={p.code} className="scroll-mt-24">
                 <Link
                   to="/contact"
                   search={{ pkg: p.code }}
