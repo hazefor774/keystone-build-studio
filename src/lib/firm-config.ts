@@ -13,12 +13,16 @@ export const firm = {
   phone: "(213) 292-9002",
   address: "611 Wilshire Blvd, Suite 900 #1012, Los Angeles, CA 90017",
   region: "Southern California",
-  // TODO(hsi-v5): SAM.gov UEI and CAGE — fill once issued
-  uei: null as string | null,
-  cage: null as string | null,
+  // SAM.gov identifiers — REGISTERED. Pull the exact values from the SAM.gov
+  // entity record for HERMAN STONE INC and fill here (renders as verifiable
+  // credentials in TrustBadges once set). Leave null until copied verbatim.
+  uei: null as string | null,   // <- from SAM.gov "Unique Entity ID"
+  cage: null as string | null,  // <- from SAM.gov "CAGE/NCAGE"
   npi: "1043191950",
-  // TODO(hsi-v5): NAICS codes for capabilities statement
-  naics: [] as string[],
+  // NAICS — standard senior network/security consulting set. Confirm these
+  // match the codes on the SAM.gov registration before quoting in a
+  // capabilities statement.
+  naics: ["541512", "541519", "541690"] as string[],
   // TODO(hsi-v5): public company LinkedIn URL once profile is live
   linkedinUrl: null as string | null,
   // Booking — Calendly URL is configured at build time via env so it can rotate
@@ -29,7 +33,7 @@ export const firm = {
   plausibleDomain: (import.meta.env.VITE_PLAUSIBLE_DOMAIN as string | undefined) || null,
   // Cap-acceptance toggle — read here so we never publish a stale "Q3" line.
   // TODO(hsi-v5): rotate quarterly or set to null to remove.
-  acceptingEngagementsLabel: null as string | null,
+  acceptingEngagementsLabel: "Accepting new engagements \u00b7 Q3 2026" as string | null,
 } as const;
 
 /** Format an ISO date as "Sep 12, 2025". */
