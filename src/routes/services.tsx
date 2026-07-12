@@ -80,7 +80,7 @@ function Services() {
   return (
     <>
       <section>
-        <div className="mx-auto max-w-7xl px-8 pb-20 pt-28">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 pb-20 pt-24 sm:pt-28">
           <Kicker index="—" label="Services" />
           <h1
             className="mt-6 max-w-[20ch] text-[clamp(2.5rem,6vw,5rem)] font-medium leading-[1.02] tracking-tight"
@@ -108,12 +108,12 @@ function Services() {
         </div>
       </section>
 
-      <div className="mx-auto max-w-7xl px-8">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8">
         {services.map(({ id, n, title, overview, deliverables, example }, i) => (
           <section
             key={id}
             id={id}
-            className="scroll-mt-24 grid gap-12 border-t border-[var(--hair)] py-24 lg:grid-cols-[1fr_1.6fr] lg:gap-20"
+            className="scroll-mt-24 grid gap-12 border-t border-[var(--hair)] py-14 sm:py-12 sm:py-16 lg:py-20 lg:py-24 lg:grid-cols-[1fr_1.6fr] lg:gap-20"
           >
             <div>
               <span
@@ -155,7 +155,7 @@ function Services() {
       </div>
 
       <section className="border-t border-[var(--hair)] bg-paper">
-        <div className="mx-auto max-w-4xl px-8 py-24 text-center">
+        <div className="mx-auto max-w-4xl px-5 sm:px-8 py-14 sm:py-12 sm:py-16 lg:py-20 lg:py-24 text-center">
           <Kicker index="—" label="Most engagements start here" className="justify-center inline-flex" />
           <p
             className="mt-6 text-3xl font-medium tracking-tight sm:text-4xl"

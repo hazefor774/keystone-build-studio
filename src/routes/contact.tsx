@@ -113,7 +113,7 @@ function Contact() {
   return (
     <>
       <section>
-        <div className="mx-auto max-w-7xl px-8 pb-16 pt-28">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 pb-16 pt-24 sm:pt-28">
           <Kicker index="—" label="Contact" />
           <h1
             className="mt-6 max-w-[22ch] text-[clamp(2.5rem,6vw,5rem)] font-medium leading-[1.02] tracking-tight"
@@ -132,7 +132,7 @@ function Contact() {
       </section>
 
       <section className="border-t border-[var(--hair)]">
-        <div className="mx-auto max-w-7xl px-8 py-24">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 py-14 sm:py-12 sm:py-16 lg:py-20 lg:py-24">
           <div className="grid gap-20 lg:grid-cols-[1.2fr_1fr]">
             <form onSubmit={onSubmit} data-form="contact-form">
               {/* Honeypot — visually hidden from humans, harvested by bots. */}

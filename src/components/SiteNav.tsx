@@ -16,7 +16,7 @@ export function SiteNav() {
   const [open, setOpen] = useState(false);
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--hair)] bg-[color-mix(in_oklab,var(--bone)_92%,transparent)] backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:h-20 sm:px-8">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:h-20 sm:px-5 sm:px-8">
         {/* Wordmark */}
         <Link to="/" aria-label="Herman Stone INC — Home" className="group flex items-center">
           <Logo className="h-10" />
@@ -56,7 +56,7 @@ export function SiteNav() {
 
       {open && (
         <div className="border-t border-[var(--hair)] bg-bone lg:hidden">
-          <nav className="mx-auto flex max-w-7xl flex-col px-5 py-3 sm:px-8">
+          <nav className="mx-auto flex max-w-7xl flex-col px-5 py-3 sm:px-5 sm:px-8">
             {links.map((l) => (
               <Link
                 key={l.to}

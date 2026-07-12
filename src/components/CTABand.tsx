@@ -20,7 +20,7 @@ export function CTABand({
 }: CTABandProps) {
   return (
     <section className="anchor-deep relative">
-      <div className="mx-auto max-w-6xl px-8 py-28 sm:py-36 text-center">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8 py-16 sm:py-14 sm:py-12 sm:py-16 lg:py-20 lg:py-24 lg:py-28 sm:py-36 text-center">
         <Kicker index="—" label={kicker} className="!text-[var(--on-teal-soft)] justify-center inline-flex" />
         <h2
           className="mx-auto mt-8 max-w-3xl text-[clamp(2.25rem,5vw,4rem)] font-medium leading-[1.05] tracking-tight"

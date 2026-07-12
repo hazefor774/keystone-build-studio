@@ -44,7 +44,7 @@ export const Route = createFileRoute("/work/$slug")({
     };
   },
   notFoundComponent: () => (
-    <div className="mx-auto max-w-3xl px-8 py-32">
+    <div className="mx-auto max-w-3xl px-5 sm:px-8 py-12 sm:py-16 lg:py-20 sm:py-16 sm:py-14 sm:py-12 sm:py-16 lg:py-20 lg:py-24 lg:py-28 lg:py-32">
       <Kicker index="—" label="404" />
       <h1 className="mt-6 text-5xl" style={{ fontFamily: "var(--font-display)" }}>
         That case study isn't here.
@@ -55,7 +55,7 @@ export const Route = createFileRoute("/work/$slug")({
     </div>
   ),
   errorComponent: ({ error, reset }) => (
-    <div className="mx-auto max-w-3xl px-8 py-32">
+    <div className="mx-auto max-w-3xl px-5 sm:px-8 py-12 sm:py-16 lg:py-20 sm:py-16 sm:py-14 sm:py-12 sm:py-16 lg:py-20 lg:py-24 lg:py-28 lg:py-32">
       <p className="font-mono-label text-[11px] text-ink-soft">Error</p>
       <h1 className="mt-6 text-4xl">Couldn't load this case study.</h1>
       <p className="mt-4 text-ink-soft">{error.message}</p>
@@ -75,7 +75,7 @@ function WorkDetail() {
   return (
     <article>
       <header className="border-b border-[var(--hair)]">
-        <div className="mx-auto max-w-3xl px-8 pb-16 pt-24">
+        <div className="mx-auto max-w-3xl px-5 sm:px-8 pb-16 pt-24">
           <Link
             to="/work"
             className="inline-flex items-center gap-2 font-mono-label text-[10px] text-ink-soft hover:text-ink"
@@ -97,7 +97,7 @@ function WorkDetail() {
         </div>
       </header>
 
-      <div className="mx-auto max-w-3xl px-8 py-20">
+      <div className="mx-auto max-w-3xl px-5 sm:px-8 py-12 sm:py-16 lg:py-20">
         <Section label="Situation">{study.situation}</Section>
         <Section label="Constraint">{study.constraint}</Section>
 
@@ -146,7 +146,7 @@ function WorkDetail() {
       </div>
 
       <section className="border-t border-[var(--hair)] bg-paper-2">
-        <div className="mx-auto max-w-7xl px-8 py-20">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 py-12 sm:py-16 lg:py-20">
           <Kicker index="—" label="Read next" />
           <Link
             to="/work/$slug"

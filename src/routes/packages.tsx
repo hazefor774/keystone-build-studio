@@ -88,7 +88,7 @@ function Packages() {
   return (
     <>
       <section>
-        <div className="mx-auto max-w-7xl px-8 pb-20 pt-28">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 pb-20 pt-24 sm:pt-28">
           <Kicker index="—" label="Engagements" />
           <h1
             className="mt-6 max-w-[22ch] text-[clamp(2.5rem,6vw,5rem)] font-medium leading-[1.02] tracking-tight"
@@ -129,7 +129,7 @@ function Packages() {
       </section>
 
       <section className="border-t border-[var(--hair)]">
-        <div className="mx-auto max-w-7xl px-8 py-8">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 py-8">
           <ul>
             {engagements.map((p) => (
               <li key={p.code} id={p.code} className="scroll-mt-24">
