@@ -195,7 +195,7 @@ function Home() {
               <RevealItem key={c.n} as="li">
                 <Link
                   to="/services"
-                  className="row-accent group grid grid-cols-[auto_1fr_auto] items-baseline gap-10 border-b border-[var(--hair)] py-10 transition hover:-translate-y-0.5 hover:bg-paper/60"
+                  className="row-accent group grid grid-cols-[auto_1fr_auto] items-baseline gap-5 border-b border-[var(--hair)] py-8 transition hover:-translate-y-0.5 hover:bg-paper/60 sm:gap-10 sm:py-10"
                 >
                   <span className="font-mono-label text-[11px] text-ink-soft">{c.n}</span>
                   <div className="grid gap-3 lg:grid-cols-[1fr_1.4fr] lg:gap-12">
