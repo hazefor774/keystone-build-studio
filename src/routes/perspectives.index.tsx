@@ -31,7 +31,7 @@ function PerspectivesIndex() {
   return (
     <>
       <section>
-        <div className="mx-auto max-w-7xl px-8 pb-20 pt-28">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 pb-20 pt-24 sm:pt-28">
           <Kicker index="—" label="Perspectives" />
           <h1
             className="mt-6 max-w-[22ch] text-[clamp(2.5rem,6vw,5rem)] font-medium leading-[1.02] tracking-tight"
@@ -49,7 +49,7 @@ function PerspectivesIndex() {
 
       {/* Featured */}
       <section className="border-y border-[var(--hair)] bg-paper">
-        <div className="mx-auto max-w-7xl px-8 py-24">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 py-14 sm:py-12 sm:py-16 lg:py-20 lg:py-24">
           <Link
             to="/perspectives/$slug"
             params={{ slug: featured.slug }}
@@ -84,7 +84,7 @@ function PerspectivesIndex() {
 
       {/* List */}
       <section>
-        <div className="mx-auto max-w-7xl px-8 py-20">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 py-12 sm:py-16 lg:py-20">
           <Kicker index="—" label="More perspectives" />
           <ul className="mt-10">
             {rest.map((p) => (

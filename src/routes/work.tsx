@@ -29,7 +29,7 @@ function WorkIndex() {
   return (
     <>
       <section>
-        <div className="mx-auto max-w-7xl px-8 pb-12 pt-28">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 pb-12 pt-24 sm:pt-28">
           <Kicker index="—" label="Case studies" />
           <h1
             className="mt-6 max-w-[22ch] text-[clamp(2.5rem,6vw,5rem)] font-medium leading-[1.02] tracking-tight"
@@ -46,7 +46,7 @@ function WorkIndex() {
       </section>
 
       <section className="border-t border-[var(--hair)]">
-        <div className="mx-auto max-w-7xl px-8 py-8">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 py-8">
           <ul>
             {caseStudies.map((c) => (
               <li key={c.slug}>

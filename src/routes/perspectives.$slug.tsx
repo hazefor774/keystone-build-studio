@@ -80,7 +80,7 @@ export const Route = createFileRoute("/perspectives/$slug")({
   },
   notFoundComponent: NotFound,
   errorComponent: ({ error, reset }) => (
-    <div className="mx-auto max-w-3xl px-8 py-32">
+    <div className="mx-auto max-w-3xl px-5 sm:px-8 py-12 sm:py-16 lg:py-20 sm:py-16 sm:py-14 sm:py-12 sm:py-16 lg:py-20 lg:py-24 lg:py-28 lg:py-32">
       <p className="font-mono-label text-[11px] text-ink-soft">Error</p>
       <h1 className="mt-6 text-4xl">Something went wrong loading this perspective.</h1>
       <p className="mt-4 text-ink-soft">{error.message}</p>
@@ -92,7 +92,7 @@ export const Route = createFileRoute("/perspectives/$slug")({
 
 function NotFound() {
   return (
-    <div className="mx-auto max-w-3xl px-8 py-32">
+    <div className="mx-auto max-w-3xl px-5 sm:px-8 py-12 sm:py-16 lg:py-20 sm:py-16 sm:py-14 sm:py-12 sm:py-16 lg:py-20 lg:py-24 lg:py-28 lg:py-32">
       <Kicker index="—" label="404" />
       <h1
         className="mt-6 text-5xl"
@@ -119,7 +119,7 @@ function PerspectiveDetail() {
     <article>
       {/* Header */}
       <header className="border-b border-[var(--hair)]">
-        <div className="mx-auto max-w-3xl px-8 pb-16 pt-24">
+        <div className="mx-auto max-w-3xl px-5 sm:px-8 pb-16 pt-24">
           <Link
             to="/perspectives"
             className="inline-flex items-center gap-2 font-mono-label text-[10px] text-ink-soft hover:text-ink"
@@ -144,7 +144,7 @@ function PerspectiveDetail() {
       </header>
 
       {/* Body */}
-      <div className="mx-auto max-w-3xl px-8 py-20">
+      <div className="mx-auto max-w-3xl px-5 sm:px-8 py-12 sm:py-16 lg:py-20">
         <div className="space-y-8">
           {post.body.map((block, i) => {
             if (block.type === "h2") {
@@ -197,7 +197,7 @@ function PerspectiveDetail() {
 
       {/* Up next */}
       <section className="border-t border-[var(--hair)] bg-paper-2">
-        <div className="mx-auto max-w-7xl px-8 py-20">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 py-12 sm:py-16 lg:py-20">
           <Kicker index="—" label="Read next" />
           <Link
             to="/perspectives/$slug"

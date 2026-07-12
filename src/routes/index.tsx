@@ -76,7 +76,7 @@ function Home() {
             strokeWidth={0.4}
           />
         </motion.div>
-        <div className="relative mx-auto grid max-w-7xl gap-16 px-8 pb-32 pt-28 sm:pt-36 lg:grid-cols-[1.3fr_1fr] lg:items-center lg:gap-24">
+        <div className="relative mx-auto grid max-w-7xl gap-16 px-5 sm:px-8 pb-20 sm:pb-32 pt-24 sm:pt-28 sm:pt-36 lg:grid-cols-[1.3fr_1fr] lg:items-center lg:gap-24">
           <div>
             <motion.p
               {...heroRise(0.05)}
@@ -129,7 +129,7 @@ function Home() {
 
       {/* Proof band — oversized numbers, hairline separated */}
       <Reveal as="section" className="border-b border-[var(--hair)] bg-paper" stagger>
-        <div className="mx-auto max-w-7xl px-8 py-20">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 py-12 sm:py-16 lg:py-20">
           <RevealItem><Kicker index="01" label="In the field" /></RevealItem>
           <div className="mt-12 grid gap-px bg-[var(--hair)] sm:grid-cols-2 lg:grid-cols-4">
             {proofs.map((p) => (
@@ -152,7 +152,7 @@ function Home() {
 
       {/* Principal statement — deep teal anchor, anonymous */}
       <Reveal as="section" className="anchor-deep relative">
-        <div className="mx-auto max-w-5xl px-8 py-32 sm:py-40">
+        <div className="mx-auto max-w-5xl px-5 sm:px-8 py-12 sm:py-16 lg:py-20 sm:py-16 sm:py-14 sm:py-12 sm:py-16 lg:py-20 lg:py-24 lg:py-28 lg:py-32 sm:py-40">
           <p className="font-mono-label text-[10px] text-[var(--on-teal-soft)]">02 — A note from our principal engineer</p>
           <blockquote
             className="mt-10 text-[clamp(1.75rem,3.4vw,2.875rem)] font-medium leading-[1.2] tracking-tight text-[var(--on-teal)]"
@@ -174,7 +174,7 @@ function Home() {
 
       {/* Capabilities — editorial spec rows */}
       <Reveal as="section" stagger>
-        <div className="mx-auto max-w-7xl px-8 py-28">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 py-16 sm:py-14 sm:py-12 sm:py-16 lg:py-20 lg:py-24 lg:py-28">
           <RevealItem className="flex flex-wrap items-end justify-between gap-8 border-b border-[var(--hair)] pb-10">
             <div className="max-w-2xl">
               <Kicker index="03" label="Capabilities" />
@@ -195,7 +195,7 @@ function Home() {
               <RevealItem key={c.n} as="li">
                 <Link
                   to="/services"
-                  className="row-accent group grid grid-cols-[auto_1fr_auto] items-baseline gap-10 border-b border-[var(--hair)] py-10 transition hover:-translate-y-0.5 hover:bg-paper/60"
+                  className="row-accent group grid grid-cols-[auto_1fr_auto] items-baseline gap-5 border-b border-[var(--hair)] py-8 transition hover:-translate-y-0.5 hover:bg-paper/60 sm:gap-10 sm:py-10"
                 >
                   <span className="font-mono-label text-[11px] text-ink-soft">{c.n}</span>
                   <div className="grid gap-3 lg:grid-cols-[1fr_1.4fr] lg:gap-12">
@@ -217,7 +217,7 @@ function Home() {
 
       {/* Engagement model — three columns, generous air */}
       <Reveal as="section" className="bg-paper" stagger>
-        <div className="mx-auto max-w-7xl px-8 py-28">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 py-16 sm:py-14 sm:py-12 sm:py-16 lg:py-20 lg:py-24 lg:py-28">
           <RevealItem>
             <Kicker index="04" label="Engagement model" />
             <h2
@@ -237,7 +237,7 @@ function Home() {
               { n: "II.", title: "Sprint", desc: "Implement the fix — segmentation, access, logging, cloud, AI guardrails.", meta: "4 – 8 weeks" },
               { n: "III.", title: "Retainer", desc: "Architecture review, change advisory, and audit-grade evidence support.", meta: "Monthly" },
             ].map((s) => (
-              <RevealItem key={s.n} className="row-accent bg-paper px-8 py-12 transition hover:-translate-y-0.5">
+              <RevealItem key={s.n} className="row-accent bg-paper px-5 sm:px-8 py-12 transition hover:-translate-y-0.5">
                 <span
                   className="text-3xl text-ink-soft"
                   style={{ fontFamily: "var(--font-display)", fontStyle: "italic" }}
@@ -260,7 +260,7 @@ function Home() {
 
       {/* Client profile — restrained list */}
       <Reveal as="section" stagger>
-        <div className="mx-auto max-w-7xl px-8 py-28">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 py-16 sm:py-14 sm:py-12 sm:py-16 lg:py-20 lg:py-24 lg:py-28">
           <div className="grid gap-16 lg:grid-cols-[1fr_1.4fr] lg:gap-24">
             <RevealItem>
               <Kicker index="05" label="Client profile" />
@@ -289,7 +289,7 @@ function Home() {
       {/* Case study teaser — single featured */}
       {caseStudies[0] && (
         <Reveal as="section" className="border-y border-[var(--hair)] bg-paper-2">
-          <div className="mx-auto max-w-7xl px-8 py-28">
+          <div className="mx-auto max-w-7xl px-5 sm:px-8 py-16 sm:py-14 sm:py-12 sm:py-16 lg:py-20 lg:py-24 lg:py-28">
             <div className="grid gap-16 lg:grid-cols-[1fr_1.6fr] lg:gap-24">
               <div>
                 <Kicker index="06" label="Recent work" />
@@ -335,7 +335,7 @@ function Home() {
 
       {/* Credentials strip — quiet */}
       <Reveal as="section">
-        <div className="mx-auto max-w-7xl px-8 py-16">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 py-16">
           <TrustBadges />
         </div>
       </Reveal>

@@ -29,7 +29,7 @@ function About() {
   return (
     <>
       <section>
-        <div className="mx-auto max-w-7xl px-8 pb-12 pt-28">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 pb-12 pt-24 sm:pt-28">
           <Kicker index="—" label="About" />
           <h1
             className="mt-6 max-w-[20ch] text-[clamp(2.5rem,6vw,5rem)] font-medium leading-[1.02] tracking-tight"
@@ -48,7 +48,7 @@ function About() {
 
       {/* Principal — anonymous editorial spread, monogram instead of portrait */}
       <section className="border-t border-[var(--hair)]">
-        <div className="mx-auto grid max-w-7xl gap-16 px-8 py-24 lg:grid-cols-[1fr_1.6fr] lg:gap-24">
+        <div className="mx-auto grid max-w-7xl gap-16 px-5 sm:px-8 py-14 sm:py-12 sm:py-16 lg:py-20 lg:py-24 lg:grid-cols-[1fr_1.6fr] lg:gap-24">
           <div>
             <div className="aspect-[4/5] flex items-center justify-center border border-[var(--hair)] bg-paper-2 p-10">
               <ArchMark className="h-auto w-full max-w-[280px]" />
@@ -106,7 +106,7 @@ function About() {
 
       {/* Company / SAM.gov */}
       <section className="border-t border-[var(--hair)] bg-paper">
-        <div className="mx-auto grid max-w-7xl gap-16 px-8 py-24 lg:grid-cols-[1fr_1.6fr]">
+        <div className="mx-auto grid max-w-7xl gap-16 px-5 sm:px-8 py-14 sm:py-12 sm:py-16 lg:py-20 lg:py-24 lg:grid-cols-[1fr_1.6fr]">
           <div>
             <Kicker index="02" label="The firm" />
             <h2
@@ -131,7 +131,7 @@ function About() {
 
       {/* Operating principles */}
       <section className="border-t border-[var(--hair)]">
-        <div className="mx-auto max-w-7xl px-8 py-24">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 py-14 sm:py-12 sm:py-16 lg:py-20 lg:py-24">
           <Kicker index="03" label="Operating principles" />
           <h2
             className="mt-5 max-w-2xl text-[clamp(2rem,4vw,3rem)] font-medium leading-[1.05] tracking-tight"

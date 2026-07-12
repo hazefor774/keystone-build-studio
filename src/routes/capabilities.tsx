@@ -24,7 +24,7 @@ export const Route = createFileRoute("/capabilities")({
 function Capabilities() {
   return (
     <section>
-      <div className="mx-auto max-w-4xl px-8 pb-24 pt-28">
+      <div className="mx-auto max-w-4xl px-5 sm:px-8 pb-16 sm:pb-24 pt-24 sm:pt-28">
         <Kicker index="—" label="Capabilities Statement" />
         <h1
           className="mt-6 text-[clamp(2.25rem,5vw,4rem)] font-medium leading-[1.05] tracking-tight"

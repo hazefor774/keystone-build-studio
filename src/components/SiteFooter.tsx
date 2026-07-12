@@ -6,7 +6,7 @@ import { firm } from "@/lib/firm-config";
 export function SiteFooter() {
   return (
     <footer className="relative border-t border-[var(--hair)] bg-bone">
-      <div className="mx-auto grid max-w-7xl gap-12 px-8 py-20 md:grid-cols-[2fr_1fr_1fr]">
+      <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 py-12 sm:py-16 lg:py-20 md:grid-cols-[2fr_1fr_1fr]">
         <div className="max-w-md">
           <Logo stacked className="mb-1" />
           <p
@@ -61,7 +61,7 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-[var(--hair)]">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-8 py-6 font-mono-label text-[10px] text-ink-soft sm:flex-row">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-5 sm:px-8 py-6 font-mono-label text-[10px] text-ink-soft sm:flex-row">
           <span>
             © Herman Stone INC · California Corporation · {firm.address} · Tel {firm.phone}
           </span>
