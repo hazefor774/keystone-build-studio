@@ -16,7 +16,7 @@ export function SiteNav() {
   const [open, setOpen] = useState(false);
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--hair)] bg-[color-mix(in_oklab,var(--bone)_92%,transparent)] backdrop-blur-xl">
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-8">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:h-20 sm:px-8">
         {/* Wordmark */}
         <Link to="/" aria-label="Herman Stone INC — Home" className="group flex items-center">
           <Logo className="h-10" />
@@ -38,9 +38,11 @@ export function SiteNav() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <Link to="/contact" className="btn-primary hidden sm:inline-flex">
-            Book&nbsp;a&nbsp;scoping&nbsp;call <ArrowRight className="h-3.5 w-3.5" />
-          </Link>
+          <span className="hidden sm:inline-flex">
+            <Link to="/contact" className="btn-primary">
+              Book&nbsp;a&nbsp;call <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+          </span>
           <button
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
@@ -54,7 +56,7 @@ export function SiteNav() {
 
       {open && (
         <div className="border-t border-[var(--hair)] bg-bone lg:hidden">
-          <nav className="mx-auto flex max-w-7xl flex-col px-8 py-3">
+          <nav className="mx-auto flex max-w-7xl flex-col px-5 py-3 sm:px-8">
             {links.map((l) => (
               <Link
                 key={l.to}
