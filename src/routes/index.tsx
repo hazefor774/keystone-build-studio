@@ -138,7 +138,7 @@ function Home() {
                   className="text-[clamp(3rem,5vw,4.5rem)] font-medium leading-none text-ink"
                   style={{ fontFamily: "var(--font-display)" }}
                 >
-                  <CountUp value={p.num} />
+                  {p.noAnim ? p.num : <CountUp value={p.num} />}
                 </p>
                 <p className="mt-5 max-w-[20ch] text-sm leading-relaxed text-ink-soft">{p.label}</p>
               </RevealItem>
@@ -166,7 +166,7 @@ function Home() {
           <div className="mt-12 flex items-center gap-6">
             <div className="h-px w-10 bg-green/80" />
             <p className="font-mono-label text-[10px] text-[var(--on-teal-soft)]">
-              Our Principal Engineer · Herman Stone INC
+              Stone Azefor · Principal Engineer, Herman Stone INC
             </p>
           </div>
         </div>
