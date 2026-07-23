@@ -16,6 +16,7 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PackagesRouteImport } from './routes/packages'
 import { Route as McpRouteImport } from './routes/mcp'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CcpaRouteImport } from './routes/ccpa'
 import { Route as CapabilitiesRouteImport } from './routes/capabilities'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -59,6 +60,11 @@ const McpRoute = McpRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CcpaRoute = CcpaRouteImport.update({
+  id: '/ccpa',
+  path: '/ccpa',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CapabilitiesRoute = CapabilitiesRouteImport.update({
@@ -114,6 +120,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/capabilities': typeof CapabilitiesRoute
+  '/ccpa': typeof CcpaRoute
   '/contact': typeof ContactRoute
   '/mcp': typeof McpRoute
   '/packages': typeof PackagesRoute
@@ -132,6 +139,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/capabilities': typeof CapabilitiesRoute
+  '/ccpa': typeof CcpaRoute
   '/contact': typeof ContactRoute
   '/mcp': typeof McpRoute
   '/packages': typeof PackagesRoute
@@ -151,6 +159,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/capabilities': typeof CapabilitiesRoute
+  '/ccpa': typeof CcpaRoute
   '/contact': typeof ContactRoute
   '/mcp': typeof McpRoute
   '/packages': typeof PackagesRoute
@@ -171,6 +180,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/capabilities'
+    | '/ccpa'
     | '/contact'
     | '/mcp'
     | '/packages'
@@ -189,6 +199,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/capabilities'
+    | '/ccpa'
     | '/contact'
     | '/mcp'
     | '/packages'
@@ -207,6 +218,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/capabilities'
+    | '/ccpa'
     | '/contact'
     | '/mcp'
     | '/packages'
@@ -226,6 +238,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   CapabilitiesRoute: typeof CapabilitiesRoute
+  CcpaRoute: typeof CcpaRoute
   ContactRoute: typeof ContactRoute
   McpRoute: typeof McpRoute
   PackagesRoute: typeof PackagesRoute
@@ -289,6 +302,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ccpa': {
+      id: '/ccpa'
+      path: '/ccpa'
+      fullPath: '/ccpa'
+      preLoaderRoute: typeof CcpaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/capabilities': {
@@ -371,6 +391,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   CapabilitiesRoute: CapabilitiesRoute,
+  CcpaRoute: CcpaRoute,
   ContactRoute: ContactRoute,
   McpRoute: McpRoute,
   PackagesRoute: PackagesRoute,
