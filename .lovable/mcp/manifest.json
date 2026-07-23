@@ -1,0 +1,131 @@
+{
+  "version": 1,
+  "sdk_version": "0.24.0",
+  "path": "/mcp",
+  "auth": {
+    "type": "none"
+  },
+  "mcp": {
+    "server": {
+      "name": "herman-stone-mcp",
+      "version": "0.1.0",
+      "title": "Herman Stone INC"
+    },
+    "tools": [
+      {
+        "name": "list_engagements",
+        "title": "List engagements",
+        "description": "List Herman Stone INC's fixed-scope engagement packages (HSI-001 through HSI-007), each with duration, scope, target audience, and outcome.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_case_studies",
+        "title": "List case studies",
+        "description": "List anonymized case studies (sector + size only, no client names) with situation, constraint, action, and confirmed outcome metrics.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_case_study",
+        "title": "Get case study",
+        "description": "Get the full detail of one anonymized case study by slug (e.g. `regional-healthcare-sd-wan-migration`).",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "slug": {
+              "type": "string",
+              "description": "Case study slug from list_case_studies."
+            }
+          },
+          "required": [
+            "slug"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_perspectives",
+        "title": "List perspectives",
+        "description": "List Herman Stone INC's published technical field notes (slug, title, date, tag, excerpt, reading time). Use get_perspective to retrieve the full body.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_perspective",
+        "title": "Get perspective",
+        "description": "Get the full body of one perspective essay by slug, including headings, paragraphs, pull-quotes, and lists.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "slug": {
+              "type": "string",
+              "description": "Perspective slug from list_perspectives."
+            }
+          },
+          "required": [
+            "slug"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "firm_info",
+        "title": "Firm info",
+        "description": "Public firm facts for Herman Stone INC: legal name, entity, region, contact email/phone/address, NAICS codes, NPI, and current engagement-acceptance status.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
