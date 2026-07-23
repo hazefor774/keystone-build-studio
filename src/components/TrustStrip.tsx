@@ -7,9 +7,8 @@ export function TrustStrip({ className = "" }: { className?: string }) {
   const items = [
     `${firm.entity} · est. ${firm.foundedYear}`,
     "SAM.gov Registered",
-    `NPI · ${firm.npi}`,
-    firm.uei ? `UEI · ${firm.uei}` : "UEI · pending",
-    firm.cage ? `CAGE · ${firm.cage}` : "CAGE · pending",
+    ...(firm.uei ? [`UEI · ${firm.uei}`] : []),
+    ...(firm.cage ? [`CAGE · ${firm.cage}`] : []),
     "Cisco · Palo Alto Networks · Prisma",
   ];
   return (

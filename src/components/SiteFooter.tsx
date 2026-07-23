@@ -55,7 +55,6 @@ export function SiteFooter() {
           </ul>
           <div className="mt-8 space-y-1.5 font-mono-label text-[10px] text-ink-soft">
             <p>SAM.gov Registered</p>
-            <p>NPI 1043191950</p>
             <p>California Corporation</p>
           </div>
         </div>
