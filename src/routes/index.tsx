@@ -32,7 +32,7 @@ const capabilities = [
   { n: "04", title: "Network Automation & Standards", desc: "Python and Ansible across IOS-XE, NX-OS, FTD — with rollback and ISO-9001-style documentation." },
 ];
 
-const proofs = [
+const proofs: { num: string; label: string; noAnim?: boolean }[] = [
   // TODO(hsi-v5): confirm each metric is true and current. Soften further if needed.
   { num: "18+", label: "Years senior network engineering" },
   { num: "59", label: "Branch SD-WAN program in delivery \u2014 zero user-visible downtime to date" },
