@@ -118,9 +118,9 @@ function About() {
           </div>
           <div>
             <p className="max-w-[60ch] text-lg leading-relaxed text-ink-soft">
-              Herman Stone INC is SAM.gov-registered (NPI 1043191950), structured for
-              corp-to-corp work and enterprise contracts. Insured, written SOWs, clean change
-              control, and evidence-grade documentation.
+              Herman Stone INC is SAM.gov-registered and structured for corp-to-corp work
+              and enterprise contracts. Insured, written SOWs, clean change control, and
+              evidence-grade documentation.
             </p>
             <div className="mt-10 border-t border-[var(--hair)] pt-8">
               <TrustBadges />

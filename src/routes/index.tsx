@@ -32,7 +32,7 @@ const capabilities = [
   { n: "04", title: "Network Automation & Standards", desc: "Python and Ansible across IOS-XE, NX-OS, FTD — with rollback and ISO-9001-style documentation." },
 ];
 
-const proofs = [
+const proofs: { num: string; label: string; noAnim?: boolean }[] = [
   // TODO(hsi-v5): confirm each metric is true and current. Soften further if needed.
   { num: "18+", label: "Years senior network engineering" },
   { num: "59", label: "Branch SD-WAN program in delivery \u2014 zero user-visible downtime to date" },
@@ -138,7 +138,7 @@ function Home() {
                   className="text-[clamp(3rem,5vw,4.5rem)] font-medium leading-none text-ink"
                   style={{ fontFamily: "var(--font-display)" }}
                 >
-                  <CountUp value={p.num} />
+                  {p.noAnim ? p.num : <CountUp value={p.num} />}
                 </p>
                 <p className="mt-5 max-w-[20ch] text-sm leading-relaxed text-ink-soft">{p.label}</p>
               </RevealItem>
@@ -166,7 +166,7 @@ function Home() {
           <div className="mt-12 flex items-center gap-6">
             <div className="h-px w-10 bg-green/80" />
             <p className="font-mono-label text-[10px] text-[var(--on-teal-soft)]">
-              Our Principal Engineer · Herman Stone INC
+              Stone Azefor · Principal Engineer, Herman Stone INC
             </p>
           </div>
         </div>
