@@ -66,6 +66,7 @@ export function SiteFooter() {
           </span>
           <div className="flex items-center gap-6">
             <Link to="/privacy" className="hover:text-ink">Privacy</Link>
+            <Link to="/ccpa" className="hover:text-ink">CCPA</Link>
             <Link to="/capabilities" className="hover:text-ink">Capabilities Statement</Link>
           </div>
         </div>
