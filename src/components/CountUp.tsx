@@ -1,10 +1,11 @@
-import { useEffect, useRef } from "react";
-import { animate, useInView, useMotionValue, useTransform, motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { animate, useInView, useReducedMotion } from "framer-motion";
 
 /**
- * Animates a numeric prefix from 0 → target the first time the element
- * enters the viewport. Non-numeric suffix/prefix (e.g. "+", "%") is rendered
- * as plain text. Respects prefers-reduced-motion (framer-motion built-in).
+ * Static-first count-up: server/no-JS render shows the FINAL value
+ * (never 0) so crawlers and link previews see real numbers. On the
+ * client, the first time the element enters the viewport, the number
+ * animates 0 → target. Respects prefers-reduced-motion.
  */
 export function CountUp({
   value,
@@ -15,30 +16,34 @@ export function CountUp({
   duration?: number;
   className?: string;
 }) {
-  // Parse "18+" → prefix="", num=18, suffix="+"; "~9k" → prefix="~", num=9, suffix="k"
   const match = value.match(/^(\D*)(\d+(?:\.\d+)?)(.*)$/);
-  if (!match) return <span className={className}>{value}</span>;
-  const [, prefix, numStr, suffix] = match;
-  const target = parseFloat(numStr);
-  const decimals = numStr.includes(".") ? numStr.split(".")[1].length : 0;
-
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.5 });
-  const mv = useMotionValue(0);
-  const rounded = useTransform(mv, (v) => {
-    const n = decimals ? v.toFixed(decimals) : Math.round(v).toString();
-    return `${prefix}${n}${suffix}`;
-  });
+  const reduceMotion = useReducedMotion();
+  const [display, setDisplay] = useState(value);
 
   useEffect(() => {
-    if (!inView) return;
-    const controls = animate(mv, target, { duration, ease: [0.2, 0.7, 0.2, 1] });
+    if (!match || !inView || reduceMotion) return;
+    const [, prefix, numStr, suffix] = match;
+    const target = parseFloat(numStr);
+    if (target === 0) return;
+    const decimals = numStr.includes(".") ? numStr.split(".")[1].length : 0;
+    const controls = animate(0, target, {
+      duration,
+      ease: [0.2, 0.7, 0.2, 1],
+      onUpdate: (v: number) => {
+        const n = decimals ? v.toFixed(decimals) : Math.round(v).toString();
+        setDisplay(`${prefix}${n}${suffix}`);
+      },
+      onComplete: () => setDisplay(value),
+    });
     return () => controls.stop();
-  }, [inView, mv, target, duration]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inView, reduceMotion]);
 
   return (
     <span ref={ref} className={className}>
-      <motion.span>{rounded}</motion.span>
+      {display}
     </span>
   );
 }
